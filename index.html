@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audiio — Campaign Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f7f6f3;
+  --surface:#ffffff;
+  --surface2:#f0ede8;
+  --surface3:#e8e4de;
+  --border:#e2ddd7;
+  --border2:#ccc8c0;
+  --text:#111111;
+  --text-mid:#888070;
+  --text-dim:#b8b0a4;
+  --accent:#111111;
+
+  --hans:#4a7c00;
+  --hans-bg:rgba(74,124,0,.09);
+  --hans-bd:rgba(74,124,0,.3);
+
+  --plugin:#006d99;
+  --plugin-bg:rgba(0,109,153,.09);
+  --plugin-bd:rgba(0,109,153,.3);
+
+  --lifecycle:#b84000;
+  --lifecycle-bg:rgba(184,64,0,.09);
+  --lifecycle-bd:rgba(184,64,0,.3);
+
+  --internal:#5b35c4;
+  --internal-bg:rgba(91,53,196,.09);
+  --internal-bd:rgba(91,53,196,.3);
+
+  --r:7px;
+  --font:'Inter',sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* HEADER */
+.hdr{padding:16px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:100;background:var(--bg)}
+.hdr-logo{display:flex;align-items:center;gap:10px}
+.logo-img{height:28px;width:auto;display:block}
+.logo-divider{width:1px;height:20px;background:var(--border2);margin:0 2px}
+.logo-sub{font-size:12px;color:var(--text-mid);font-weight:500;letter-spacing:.01em}
+.hdr-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+
+/* LEGEND */
+.legend{display:flex;gap:3px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:3px}
+.leg{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:.02em;color:var(--text-mid);cursor:pointer;transition:all .15s;padding:5px 10px;border-radius:5px;user-select:none}
+.leg:hover,.leg.on{background:var(--surface2);color:var(--text)}
+.leg-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
+
+/* BUTTONS */
+.btn{font-family:var(--font);font-size:12px;font-weight:600;padding:8px 16px;border-radius:var(--r);border:none;cursor:pointer;transition:all .15s}
+.btn-p{background:var(--text);color:#fff}.btn-p:hover{opacity:.85}
+.btn-g{background:transparent;color:var(--text-mid);border:1px solid var(--border2)}.btn-g:hover{color:var(--text);border-color:var(--text-mid)}
+.btn-sm{font-size:11px;padding:6px 13px}
+
+/* NAV */
+.nav{display:flex;align-items:center;padding:10px 32px;border-bottom:1px solid var(--border);background:var(--surface);gap:0}
+.nav-btn{background:none;border:1px solid var(--border2);color:var(--text-mid);width:28px;height:28px;border-radius:var(--r);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-size:13px}
+.nav-btn:hover{color:var(--text);border-color:var(--text);background:var(--surface2)}
+.nav-month{font-size:14px;font-weight:600;padding:0 18px;min-width:150px;text-align:center;letter-spacing:-.01em}
+.nav-right{margin-left:auto;display:flex;gap:3px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:3px}
+.vbtn{font-family:var(--font);font-size:11px;font-weight:600;padding:4px 13px;border-radius:5px;border:none;background:none;color:var(--text-mid);cursor:pointer;transition:all .15s}
+.vbtn.on{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.vbtn:hover:not(.on){color:var(--text)}
+
+/* GRID */
+.cwrap{padding:0 32px 48px}
+.dhdrs{display:grid;grid-template-columns:repeat(7,1fr);margin-top:20px;border-left:1px solid var(--border);border-top:1px solid var(--border)}
+.dhdr{padding:9px 10px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);border-left:1px solid var(--border)}
+.cell{min-height:116px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:7px;position:relative;transition:background .1s;background:var(--surface)}
+.cell.other{background:var(--bg);opacity:.6}
+.cell.today{background:#fffef5}
+.cell.today .dnum{background:var(--text);color:#fff;border-radius:50%;font-weight:700}
+.cell:hover{background:var(--surface2)}
+.cell.dover{background:var(--surface3);outline:1px dashed var(--border2)}
+.dnum{font-size:11px;font-weight:500;color:var(--text-dim);width:22px;height:22px;display:flex;align-items:center;justify-content:center;margin-bottom:3px}
+.addbtn{position:absolute;top:5px;right:5px;width:18px;height:18px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);color:var(--text-dim);font-size:14px;line-height:1;display:none;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
+.cell:hover .addbtn{display:flex}
+.addbtn:hover{background:var(--text);color:#fff;border-color:var(--text)}
+
+/* EVENTS */
+.ev{border-radius:4px;padding:3px 7px;margin-bottom:2px;font-size:10.5px;font-weight:600;line-height:1.35;cursor:pointer;border-left:2px solid;transition:filter .12s;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.ev:hover{filter:brightness(.94)}
+.ev.hans{background:var(--hans-bg);border-color:var(--hans);color:var(--hans)}
+.ev.plugin{background:var(--plugin-bg);border-color:var(--plugin);color:var(--plugin)}
+.ev.lifecycle{background:var(--lifecycle-bg);border-color:var(--lifecycle);color:var(--lifecycle)}
+.ev.internal{background:var(--internal-bg);border-color:var(--internal);color:var(--internal)}
+
+/* LIST */
+.lv{padding:0 32px 48px;margin-top:20px;display:none}
+.lmonth{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);padding:16px 0 8px;border-bottom:1px solid var(--border)}
+.lrow{display:flex;align-items:flex-start;gap:14px;padding:11px 10px;border-bottom:1px solid var(--border);cursor:pointer;border-radius:var(--r);transition:background .1s}
+.lrow:hover{background:var(--surface2)}
+.ldate{font-size:11px;font-weight:500;color:var(--text-mid);width:48px;flex-shrink:0;padding-top:2px}
+.ldot{width:7px;height:7px;border-radius:2px;flex-shrink:0;margin-top:4px}
+.ltitle{font-size:13px;font-weight:600}
+.ltitle.hans{color:var(--hans)}.ltitle.plugin{color:var(--plugin)}.ltitle.lifecycle{color:var(--lifecycle)}.ltitle.internal{color:var(--internal)}
+.lnote{font-size:11px;color:var(--text-mid);margin-top:2px;line-height:1.4}
+.ltag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;flex-shrink:0;margin-top:2px}
+.ltag.hans{background:var(--hans-bg);color:var(--hans)}.ltag.plugin{background:var(--plugin-bg);color:var(--plugin)}.ltag.lifecycle{background:var(--lifecycle-bg);color:var(--lifecycle)}.ltag.internal{background:var(--internal-bg);color:var(--internal)}
+
+/* MODAL */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.ov.open{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;width:100%;max-width:450px;padding:26px;position:relative;animation:su .18s ease;box-shadow:0 16px 48px rgba(0,0,0,.14)}
+@keyframes su{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.mtitle{font-size:15px;font-weight:700;margin-bottom:18px;letter-spacing:-.01em}
+.mclose{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--text-mid);font-size:20px;cursor:pointer;line-height:1;padding:4px;border-radius:4px;transition:all .12s}
+.mclose:hover{color:var(--text);background:var(--surface2)}
+.field{margin-bottom:13px}
+.field label{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mid);margin-bottom:5px}
+.field input,.field textarea{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:var(--font);font-size:13px;padding:9px 11px;outline:none;transition:border .15s}
+.field input:focus,.field textarea:focus{border-color:var(--text)}
+.field textarea{min-height:65px;resize:vertical}
+.mrow{display:flex;gap:10px}.mrow .field{flex:1}
+.macts{display:flex;justify-content:space-between;margin-top:18px;gap:8px;align-items:center}
+.btn-del{background:rgba(200,0,0,.07);color:#c00;font-family:var(--font);font-size:11px;font-weight:700;padding:7px 13px;border-radius:var(--r);border:1px solid rgba(200,0,0,.2);cursor:pointer;transition:all .15s}
+.btn-del:hover{background:rgba(200,0,0,.14)}
+.rg{display:flex;gap:6px;flex-wrap:wrap}
+.ro{display:none}
+.rl{padding:5px 13px;border-radius:var(--r);border:1px solid var(--border2);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--text-mid);background:var(--bg)}
+.rl:hover{border-color:var(--text-mid);color:var(--text)}
+.ro[value="hans"]:checked+.rl{background:var(--hans-bg);border-color:var(--hans-bd);color:var(--hans)}
+.ro[value="plugin"]:checked+.rl{background:var(--plugin-bg);border-color:var(--plugin-bd);color:var(--plugin)}
+.ro[value="lifecycle"]:checked+.rl{background:var(--lifecycle-bg);border-color:var(--lifecycle-bd);color:var(--lifecycle)}
+.ro[value="internal"]:checked+.rl{background:var(--internal-bg);border-color:var(--internal-bd);color:var(--internal)}
+.cg{display:flex;gap:16px;flex-wrap:wrap}
+.cl{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--text-mid);cursor:pointer;transition:color .12s}
+.cl:hover{color:var(--text)}
+.cl input{width:14px;height:14px;accent-color:var(--text);cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-logo">
+    <img class="logo-img" src="data:image/jpeg;base64,/9j/4QDKRXhpZgAATU0AKgAAAAgABgESAAMAAAABAAEAAAEaAAUAAAABAAAAVgEbAAUAAAABAAAAXgEoAAMAAAABAAIAAAITAAMAAAABAAEAAIdpAAQAAAABAAAAZgAAAAAAAABIAAAAAQAAAEgAAAABAAeQAAAHAAAABDAyMjGRAQAHAAAABAECAwCgAAAHAAAABDAxMDCgAQADAAAAAQABAACgAgAEAAAAAQAAASygAwAEAAAAAQAAASykBgADAAAAAQAAAAAAAAAAAAD/2wCEAAEBAQEBAQIBAQIDAgICAwQDAwMDBAUEBAQEBAUGBQUFBQUFBgYGBgYGBgYHBwcHBwcICAgICAkJCQkJCQkJCQkBAQEBAgICBAICBAkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCf/dAAQAE//AABEIASwBLAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/AP7+KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/Q/v4ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA/9H+/iiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/0v7+KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/T/v4ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA/9T+/iiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/1f7+KKKKACiiigAooooAKKKKACiiigAooqlqJvVspDpqq04U+WHJCF8fKGIBIXOM4HAoAtllHGa/Nf8Aax/4LAf8E3P2Jp5tI/aD+LOiadrUATOi2Mjanqx8xtif6BYLPcDJ7lABgkkAHH+bd/wVX/4Lw/8ABUz4+fFzxZ8DviZ4rl8BaXoep3uj3nhbwpI+nWkE9hdT2s8NzdRP9uu2DJtLPPFE4VW+zoGK1/Oxca5qlzbm0MnlwtjdFEqxRsV6FkQKpPuRmgD/AEtv2gv+Dzb9jjwK+paf8Afhj4n8ZXFoSkE2q3FloVtO2AQQjvcXip2y1sp44XFfl98Rv+D1/wDahvIj/wAKu+Evg3TCc4F9e6nqJHHH3YbIdfT6V/DpRQB/Xl/xGZ/8FP8AG7+wPh5u/u/2DqG3Ppn+284/Cvo/4Z/8Hrn7VlnEg+K3wo8FaoQF3fYLvVNNLcc43R3wGT+XTmv4fqKAP9Oj9mP/AIPIv2KfiZNY6T+0X4B8R/D+6uF/fXOnPBr9lE465W28q+2ejC0+uOBX9NX7LX7bX7KH7bHgw+Pv2VvHuj+N9MiC+edNuVea1ZlDBLm3O2a3fDD5JUU+1f4Vte/fAT9p745/sz/EnTPi38FPE+peG/EOkujW+o6bcNb3SIjK3leYud8J2gNBKskDjh4mHFAH+71RX8qP/BAv/g4l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SGUrKm6FwQY5HUg0AeHV0XhjH9oy7un2S7+n/HvJj9cYqrD4e164YxwWM7kdQsTHH5Cv6Q/+Def/AIIyfFD9vf8Aae8P/F74gaNc2vwf8I31vqeraw6J9j1CaxnSaHSLR3BW4lnljH2lotyW9uro7LLIigA/1T/gr/bP/CnvCn/CR5/tD+x7D7Vnr532aPzM/wDAs16dTI1CRhAAMDGB0H0p9ABRRRQAUUUUAFFFFABRRRQAUUUUAf/T/v4ooooAKKKKACiiigAooooAKKKKACiiigAr5o/aP/Y0/ZS/a/8AD0Xhb9qD4eaB46srdt8C6xYxXLwNgruglZfMibDEZjZTg19L0UAfzVfFL/g1B/4JGfENJk8O6N4o8HrJu2R6Rr928MW7/nnFfG6RQv8ACoG0DjGK8M8C/wDBnL/wS88I6m+oax4m+IWuxsciG61e1gVRxwGs7GB8D3JNf1kUUAfjx+zj/wAEEf8Agk9+zDrEPinwP8H9L1fW7eVJ4tS8SyT6/cxyR42PE2pPOsRUgEeWi4PIr9f7S0trG3js7ONYoolCIiAKqqOAABwAPQVYooAp6hp9jq1jNpepwpPbXCNFLFIAyOjjaysDwQRwR0xX55t/wSB/4JUOcv8As3fDM4AHPhbS+gGB/wAu/YV+jFFAH5y/8Ofv+CUv/Rtvwy/8JbSv/kek/wCHP3/BKX/o234Zf+EtpX/yPX6N0UAcn4G8CeDPhj4P0z4e/DvS7XQ9B0W1isdP06xiWC1tLWBQkUEESAJHHGgCoigKoAAAAr54/aa/YS/Y5/bM0230z9qX4baB45WzVltpdVs45biAN1ENxgTRZ/2HFfWdFAH4t+Bf+DeD/gjJ8PtfPiPRvgJoF3OW3CPU3u9Stxzni3vJ5Yce2zGK/Yfw14Y8N+DNDtfC/hCwt9L0yxjENtaWkSQQQxr0SOOMKiKOwUAVu0UAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf//U/v4ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA/9X+/iiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/1v7+KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/X/v4ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA/9D+/iiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/0f7+KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/Z" alt="Audiio"/>
+    <div class="logo-divider"></div>
+    <span class="logo-sub">Campaign Calendar</span>
+  </div>
+  <div class="hdr-right">
+    <div class="legend">
+      <div class="leg on" data-filter="hans" onclick="toggleFilter('hans')"><div class="leg-dot" style="background:var(--hans)"></div>Hans 2.0</div>
+      <div class="leg on" data-filter="plugin" onclick="toggleFilter('plugin')"><div class="leg-dot" style="background:var(--plugin)"></div>Plugin</div>
+      <div class="leg on" data-filter="lifecycle" onclick="toggleFilter('lifecycle')"><div class="leg-dot" style="background:var(--lifecycle)"></div>Lifecycle</div>
+      <div class="leg on" data-filter="internal" onclick="toggleFilter('internal')"><div class="leg-dot" style="background:var(--internal)"></div>Internal</div>
+    </div>
+    <button class="btn btn-p" onclick="openAdd()">+ Add Event</button>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn" onclick="changeMonth(-1)">&#8592;</button>
+  <div class="nav-month" id="navMonth"></div>
+  <button class="nav-btn" onclick="changeMonth(1)">&#8594;</button>
+  <div class="nav-right">
+    <button class="vbtn on" id="vM" onclick="setView('month')">Month</button>
+    <button class="vbtn" id="vL" onclick="setView('list')">List</button>
+  </div>
+</div>
+
+<div class="cwrap" id="cwrap">
+  <div class="dhdrs">
+    <div class="dhdr">Sun</div><div class="dhdr">Mon</div><div class="dhdr">Tue</div>
+    <div class="dhdr">Wed</div><div class="dhdr">Thu</div><div class="dhdr">Fri</div><div class="dhdr">Sat</div>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+<div class="lv" id="lv"></div>
+
+<div class="ov" id="ov" onclick="if(event.target===this)closeOv()">
+  <div class="modal">
+    <div class="mtitle" id="mtitle">Add Event</div>
+    <button class="mclose" onclick="closeOv()">×</button>
+    <div class="field"><label>Title</label><input id="fT" type="text" placeholder="e.g. Hans 2.0 Launch"/></div>
+    <div class="mrow">
+      <div class="field"><label>Date</label><input id="fD" type="date"/></div>
+      <div class="field"><label>End Date <span style="color:var(--text-dim);font-weight:400">(opt)</span></label><input id="fE" type="date"/></div>
+    </div>
+    <div class="field"><label>Campaign</label>
+      <div class="rg">
+        <input class="ro" type="radio" name="camp" id="rH" value="hans"><label class="rl" for="rH">Hans 2.0</label>
+        <input class="ro" type="radio" name="camp" id="rP" value="plugin"><label class="rl" for="rP">Plugin</label>
+        <input class="ro" type="radio" name="camp" id="rL" value="lifecycle"><label class="rl" for="rL">Lifecycle</label>
+        <input class="ro" type="radio" name="camp" id="rI" value="internal"><label class="rl" for="rI">Internal</label>
+      </div>
+    </div>
+    <div class="field"><label>Type</label>
+      <div class="cg">
+        <label class="cl"><input type="checkbox" id="fLa"> 🚀 Launch</label>
+        <label class="cl"><input type="checkbox" id="fMi"> 🎯 Milestone</label>
+      </div>
+    </div>
+    <div class="field"><label>Audience</label><input id="fA" type="text" placeholder="e.g. Current Pro/Pro+"/></div>
+    <div class="field"><label>Notes</label><textarea id="fN" placeholder="Details, dependencies, open questions..."></textarea></div>
+    <div class="macts">
+      <button class="btn-del" id="delBtn" onclick="deleteEvent()" style="display:none">Delete</button>
+      <div style="display:flex;gap:8px;margin-left:auto">
+        <button class="btn btn-g btn-sm" onclick="closeOv()">Cancel</button>
+        <button class="btn btn-p btn-sm" onclick="saveEvent()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DEFAULTS=[
+  {id:'e001',title:'Hans 2 kick-off meeting',date:'2026-04-29',campaign:'internal',isLaunch:false,isMilestone:true,audience:'Internal team',notes:'Campaign creative kick-off'},
+  {id:'e002',title:'Send campaign briefs to partners',date:'2026-05-01',campaign:'hans',isLaunch:false,isMilestone:false,audience:'Partners',notes:'2 sent — more to follow week of May 5'},
+  {id:'e003',title:'Plugin hype starts — landing page + email capture',date:'2026-05-07',campaign:'plugin',isLaunch:true,isMilestone:true,audience:'New audience',notes:'Email capture begins. Automated confirmation triggers immediately.'},
+  {id:'e004',title:'Lifecycle: segmentation + routing live',date:'2026-05-21',campaign:'lifecycle',isLaunch:false,isMilestone:true,audience:'Internal',notes:'All 4 guest tiers routing correctly. Gates all 8 email flows.'},
+  {id:'e005',title:'Hans 2 creative due — emails + popups',date:'2026-05-08',campaign:'hans',isLaunch:false,isMilestone:true,audience:'Internal',notes:'All Phase 1 assets due from Kate'},
+  {id:'e006',title:'Partner content — run as ads (ongoing)',date:'2026-05-08',campaign:'hans',isLaunch:false,isMilestone:false,audience:'Pro/Pro+ + remarketing',notes:'Run all UGC partner content as ads as it comes in. Not dependent on video shoot.'},
+  {id:'e007',title:'Lifecycle: all email copy approved',date:'2026-05-23',campaign:'lifecycle',isLaunch:false,isMilestone:true,audience:'Internal',notes:'All 4 tracks (Lifetime, Pro, Pro+, Enterprise) signed off'},
+  {id:'e008',title:'Plugin: Loom video + how-to PDF due',date:'2026-05-11',campaign:'plugin',isLaunch:false,isMilestone:true,audience:'Internal',notes:'Downloadable package ready before early access'},
+  {id:'e009',title:'Lifecycle: all Klaviyo flows built + QA\'d',date:'2026-05-26',campaign:'lifecycle',isLaunch:false,isMilestone:true,audience:'Internal',notes:'All 8 flows tested. Last build milestone before go-live.'},
+  {id:'e010',title:'Pro/Pro+ early plugin access',date:'2026-05-13',campaign:'plugin',isLaunch:true,isMilestone:true,audience:'Current Pro / Pro+',notes:'Early access rollout begins'},
+  {id:'e011',title:'Lifecycle go-live',date:'2026-05-29',campaign:'lifecycle',isLaunch:true,isMilestone:true,audience:'New signups',notes:'All flows active, signup question live, Wisepops popups live'},
+  {id:'e012',title:'Plugin public launch',date:'2026-05-18',campaign:'plugin',isLaunch:true,isMilestone:true,audience:'Existing Pro + Pro+',notes:'Email 1 to existing Pro/Pro+. Organic social. Press TBD.'},
+  {id:'e013',title:'Hans 2 video shoot',date:'2026-05-20',campaign:'hans',isLaunch:false,isMilestone:true,audience:'Internal',notes:'Hero concept shoot. All launch assets built from this footage.'},
+  {id:'e014',title:'Lifetime plugin upsell window opens',date:'2026-05-25',campaign:'plugin',isLaunch:false,isMilestone:true,audience:'Existing Pro + Pro+',notes:'Exact date TBD May 25–Jun 1.'},
+  {id:'e015',title:'Hans 2.0 full launch — popups, email, organic, paid',date:'2026-05-26',campaign:'hans',isLaunch:true,isMilestone:true,audience:'Current Pro/Pro+',notes:'Pushed to May 26 to incorporate video shoot assets. Emails, popups, organic, paid all launch together.'},
+  {id:'e016',title:'Hans 2.0 Phase 2 — prospecting ads',date:'2026-06-01',campaign:'hans',isLaunch:false,isMilestone:true,audience:'New/cold audience',notes:'UGC + static ads to cold prospecting. $30k media budget. UTM: campaign=hans2'},
+];
+
+let events=JSON.parse(localStorage.getItem('audiio_cal_v3')||'null')||DEFAULTS;
+let yr=2026,mo=4,view='month';
+let filters=new Set(['hans','plugin','lifecycle','internal']);
+let editId=null,dragId=null;
+
+const save=()=>localStorage.setItem('audiio_cal_v3',JSON.stringify(events));
+const fmt=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const label=c=>({hans:'Hans 2.0',plugin:'Plugin',lifecycle:'Lifecycle',internal:'Internal'}[c]||c);
+const icon=ev=>ev.isLaunch?'🚀 ':ev.isMilestone?'🎯 ':'';
+
+function render(){
+  document.getElementById('navMonth').textContent=new Date(yr,mo).toLocaleString('default',{month:'long',year:'numeric'});
+  view==='month'?renderMonth():renderList();
+}
+function renderMonth(){
+  document.getElementById('cwrap').style.display='block';
+  document.getElementById('lv').style.display='none';
+  const grid=document.getElementById('grid');grid.innerHTML='';
+  const first=new Date(yr,mo,1).getDay(),dim=new Date(yr,mo+1,0).getDate(),dipm=new Date(yr,mo,0).getDate();
+  const today=new Date();today.setHours(0,0,0,0);
+  const cells=[];
+  for(let i=first-1;i>=0;i--)cells.push({d:dipm-i,o:true});
+  for(let d=1;d<=dim;d++)cells.push({d,o:false});
+  while(cells.length%7)cells.push({d:cells.length-dim-first+1,o:true});
+  cells.forEach(({d,o})=>{
+    const cell=document.createElement('div');
+    cell.className='cell'+(o?' other':'');
+    const cm=o&&d>15?mo-1:o?mo+1:mo;
+    const dt=new Date(yr,cm,d);dt.setHours(0,0,0,0);
+    if(dt.getTime()===today.getTime())cell.classList.add('today');
+    const ds=fmt(dt);cell.dataset.date=ds;
+    cell.innerHTML=`<div class="dnum">${d}</div><button class="addbtn" onclick="event.stopPropagation();openAdd('${ds}')">+</button>`;
+    events.filter(e=>e.date===ds&&filters.has(e.campaign)).forEach(ev=>{
+      const el=document.createElement('div');
+      el.className=`ev ${ev.campaign}`;
+      el.textContent=icon(ev)+ev.title;
+      el.title=(ev.audience?ev.audience+'\n':'')+ev.notes;
+      el.draggable=true;
+      el.onclick=e=>{e.stopPropagation();openEdit(ev.id)};
+      el.ondragstart=e=>{dragId=ev.id;e.dataTransfer.effectAllowed='move';setTimeout(()=>el.style.opacity='.35',0)};
+      el.ondragend=()=>el.style.opacity='1';
+      cell.appendChild(el);
+    });
+    cell.ondragover=e=>{e.preventDefault();cell.classList.add('dover')};
+    cell.ondragleave=()=>cell.classList.remove('dover');
+    cell.ondrop=e=>{
+      e.preventDefault();cell.classList.remove('dover');
+      if(dragId){const ev=events.find(e=>e.id===dragId);if(ev){ev.date=ds;save();render();}dragId=null;}
+    };
+    grid.appendChild(cell);
+  });
+}
+function renderList(){
+  document.getElementById('cwrap').style.display='none';
+  const lv=document.getElementById('lv');lv.style.display='block';lv.innerHTML='';
+  const sorted=events.filter(e=>filters.has(e.campaign)).sort((a,b)=>a.date.localeCompare(b.date));
+  if(!sorted.length){lv.innerHTML='<div style="padding:48px;color:var(--text-dim);text-align:center;font-size:13px">No events</div>';return;}
+  let lastMo=null;
+  sorted.forEach(ev=>{
+    const d=new Date(ev.date+'T00:00:00'),mk=`${d.getFullYear()}-${d.getMonth()}`;
+    if(mk!==lastMo){lastMo=mk;const mh=document.createElement('div');mh.className='lmonth';mh.textContent=d.toLocaleString('default',{month:'long',year:'numeric'});lv.appendChild(mh);}
+    const row=document.createElement('div');row.className='lrow';
+    row.innerHTML=`<div class="ldate">${d.toLocaleString('default',{month:'short',day:'numeric'})}</div><div class="ldot" style="background:var(--${ev.campaign})"></div><div style="flex:1"><div class="ltitle ${ev.campaign}">${icon(ev)}${ev.title}</div>${ev.audience||ev.notes?`<div class="lnote">${[ev.audience,ev.notes].filter(Boolean).join(' — ')}</div>`:''}</div><span class="ltag ${ev.campaign}">${label(ev.campaign)}</span>`;
+    row.onclick=()=>openEdit(ev.id);lv.appendChild(row);
+  });
+}
+function openAdd(ds=''){
+  editId=null;
+  document.getElementById('mtitle').textContent='Add Event';
+  ['fT','fA','fN'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fD').value=ds||fmt(new Date());
+  document.getElementById('fE').value='';
+  document.getElementById('fLa').checked=false;document.getElementById('fMi').checked=false;
+  document.querySelectorAll('.ro').forEach(r=>r.checked=false);
+  document.getElementById('delBtn').style.display='none';
+  document.getElementById('ov').classList.add('open');
+  setTimeout(()=>document.getElementById('fT').focus(),50);
+}
+function openEdit(id){
+  const ev=events.find(e=>e.id===id);if(!ev)return;
+  editId=id;
+  document.getElementById('mtitle').textContent='Edit Event';
+  document.getElementById('fT').value=ev.title;
+  document.getElementById('fD').value=ev.date;
+  document.getElementById('fE').value=ev.endDate||'';
+  document.getElementById('fA').value=ev.audience||'';
+  document.getElementById('fN').value=ev.notes||'';
+  document.getElementById('fLa').checked=!!ev.isLaunch;document.getElementById('fMi').checked=!!ev.isMilestone;
+  const r=document.querySelector(`.ro[value="${ev.campaign}"]`);if(r)r.checked=true;
+  document.getElementById('delBtn').style.display='block';
+  document.getElementById('ov').classList.add('open');
+  setTimeout(()=>document.getElementById('fT').focus(),50);
+}
+function saveEvent(){
+  const title=document.getElementById('fT').value.trim();if(!title)return;
+  const campaign=document.querySelector('.ro:checked')?.value||'internal';
+  const ev={id:editId||'e'+Date.now(),title,date:document.getElementById('fD').value,endDate:document.getElementById('fE').value||undefined,campaign,isLaunch:document.getElementById('fLa').checked,isMilestone:document.getElementById('fMi').checked,audience:document.getElementById('fA').value.trim(),notes:document.getElementById('fN').value.trim()};
+  if(editId){const i=events.findIndex(e=>e.id===editId);if(i>-1)events[i]=ev;}else events.push(ev);
+  save();closeOv();render();
+}
+function deleteEvent(){
+  if(!editId||!confirm('Delete this event?'))return;
+  events=events.filter(e=>e.id!==editId);save();closeOv();render();
+}
+function closeOv(){document.getElementById('ov').classList.remove('open')}
+function changeMonth(dir){mo+=dir;if(mo>11){mo=0;yr++;}if(mo<0){mo=11;yr--;}render();}
+function setView(v){view=v;document.getElementById('vM').classList.toggle('on',v==='month');document.getElementById('vL').classList.toggle('on',v==='list');render();}
+function toggleFilter(c){
+  const leg=document.querySelector(`.leg[data-filter="${c}"]`);
+  if(filters.has(c)){if(filters.size===1)return;filters.delete(c);leg.classList.remove('on');}
+  else{filters.add(c);leg.classList.add('on');}
+  render();
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeOv();
+  if(!document.getElementById('ov').classList.contains('open')){
+    if(e.key==='ArrowLeft')changeMonth(-1);
+    if(e.key==='ArrowRight')changeMonth(1);
+  }
+});
+render();
+</script>
+</body>
+</html>
