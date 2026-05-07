@@ -71,10 +71,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .vbtn:hover:not(.on){color:var(--text)}
 
 /* GRID */
-.cwrap{padding:0 32px 48px}
-.dhdrs{display:grid;grid-template-columns:repeat(7,1fr);margin-top:20px;border-left:1px solid var(--border);border-top:1px solid var(--border);position:sticky;top:109px;z-index:50;background:var(--bg)}
-.dhdr{padding:9px 10px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
-.grid{display:grid;grid-template-columns:repeat(7,1fr);border-left:1px solid var(--border)}
+.cwrap{padding:0 32px 48px;overflow:hidden}
+.dhdrs{display:none}
+.dhdr{padding:9px 10px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:109px;z-index:50}
+.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-left:1px solid var(--border);border-top:1px solid var(--border);margin-top:20px}
 .cell{min-height:116px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:7px;position:relative;transition:background .1s;background:var(--surface)}
 .cell.other{background:var(--bg);opacity:.6}
 .cell.today{background:#fffef5}
@@ -87,7 +87,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 .addbtn:hover{background:var(--text);color:#fff;border-color:var(--text)}
 
 /* EVENTS */
-.ev{border-radius:4px;padding:3px 7px;margin-bottom:2px;font-size:10.5px;font-weight:600;line-height:1.35;cursor:pointer;border-left:2px solid;transition:filter .12s;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.ev{border-radius:4px;padding:3px 7px;margin-bottom:2px;font-size:10.5px;font-weight:600;line-height:1.35;cursor:pointer;border-left:2px solid;transition:filter .12s;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:100%}
 .ev:hover{filter:brightness(.94)}
 .ev.hans{background:var(--hans-bg);border-color:var(--hans);color:var(--hans)}
 .ev.plugin{background:var(--plugin-bg);border-color:var(--plugin);color:var(--plugin)}
@@ -249,6 +249,13 @@ function renderMonth(){
   document.getElementById('cwrap').style.display='block';
   document.getElementById('lv').style.display='none';
   const grid=document.getElementById('grid');grid.innerHTML='';
+  // Inject day headers as first row of same grid
+  ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(day=>{
+    const h=document.createElement('div');
+    h.className='dhdr';
+    h.textContent=day;
+    grid.appendChild(h);
+  });
   const first=new Date(yr,mo,1).getDay(),dim=new Date(yr,mo+1,0).getDate(),dipm=new Date(yr,mo,0).getDate();
   const today=new Date();today.setHours(0,0,0,0);
   const cells=[];
