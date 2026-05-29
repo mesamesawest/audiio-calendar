@@ -13,42 +13,48 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#11
 .hdr-l{display:flex;align-items:center;gap:10px}
 .hdr-title{font-size:14px;font-weight:700;letter-spacing:-.01em}
 .hdr-sub{font-size:11px;color:#999;border-left:1px solid #ddd;padding-left:10px}
-.hdr-r{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.legend{display:flex;gap:2px;background:#f7f6f3;border:1px solid #ddd;border-radius:6px;padding:2px;flex-wrap:wrap}
-.leg{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:500;color:#999;cursor:pointer;padding:4px 9px;border-radius:4px;user-select:none;transition:all .15s}
-.leg.on{background:#fff;color:#111}
-.leg-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
+.hdr-r{display:flex;gap:6px;align-items:center}
 .btn{font-size:12px;font-weight:600;padding:7px 14px;border-radius:6px;border:1px solid #ddd;cursor:pointer;background:#fff;color:#111;font-family:inherit;transition:all .15s}
 .btn:hover{background:#f0ede8}
 .btn-dark{background:#111;color:#fff;border-color:#111}
 .btn-dark:hover{opacity:.85}
 
-/* TIMELINE */
-.tl{padding:14px 24px 16px;background:#fff;border-bottom:1px solid #e2ddd7}
-.tl-title{font-size:10px;font-weight:700;color:#bbb;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
-.tl-outer{position:relative;height:56px}
-.tl-track{position:absolute;top:24px;left:0;right:0;height:1px;background:#e2ddd7}
-.tl-dots{position:absolute;top:0;left:0;right:0;height:0}
-.tl-dot{position:absolute;width:10px;height:10px;border-radius:50%;top:19px;transform:translateX(-50%);cursor:pointer;border:2px solid #fff;transition:transform .12s;z-index:2}
-.tl-dot:hover{transform:translateX(-50%) scale(1.5)}
-.tl-dot.above{top:8px}
-.tl-mo-labels{position:absolute;bottom:0;left:0;right:0}
-.tl-mo{position:absolute;font-size:9px;color:#ccc;font-weight:600;transform:translateX(-50%);letter-spacing:.03em}
-.tl-today-line{position:absolute;top:16px;width:1px;height:16px;background:#bbb;transform:translateX(-50%)}
+/* CAMPAIGN BARS */
+.bars-section{background:#fff;border-bottom:1px solid #e2ddd7;padding:16px 24px 20px}
+.bars-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.bars-title{font-size:10px;font-weight:700;color:#bbb;letter-spacing:.08em;text-transform:uppercase}
+.bars-year{font-size:10px;color:#ccc;font-weight:600}
 
-/* TOOLTIP */
-.tip{position:fixed;background:#111;color:#fff;font-size:11px;font-weight:500;padding:6px 10px;border-radius:5px;pointer-events:none;display:none;z-index:1000;max-width:200px;white-space:normal;line-height:1.5}
+.bars-outer{position:relative}
+.bars-mo-row{display:flex;margin-bottom:8px;padding-left:120px}
+.bars-mo{flex:1;font-size:9px;color:#ccc;font-weight:600;letter-spacing:.04em;text-align:left;padding-left:2px}
+.bar-row{display:flex;align-items:center;margin-bottom:7px;position:relative}
+.bar-label{width:120px;flex-shrink:0;padding-right:10px;display:flex;align-items:center;gap:5px}
+.bar-label-name{font-size:11px;font-weight:600;color:#444;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:80px}
+.tier-badge{font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px;flex-shrink:0;letter-spacing:.03em}
+.bar-track{flex:1;height:20px;position:relative;border-radius:3px;background:#f7f6f3}
+.bar-fill{position:absolute;height:100%;border-radius:3px;opacity:.15;top:0}
+.bar-phase{position:absolute;top:50%;transform:translateY(-50%);font-size:8px;font-weight:700;white-space:nowrap;letter-spacing:.03em;opacity:.8}
+.bar-launch{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:13px;z-index:2;cursor:default}
+.bar-tdb{font-size:10px;font-weight:600;color:#ccc;padding:0 8px;line-height:20px}
+.bar-today{position:absolute;top:0;bottom:0;width:1px;background:#bbb;opacity:.5;z-index:1}
+.bar-row:hover .bar-label-name{color:#111}
+
+/* TIER LEGEND */
+.tier-legend{display:flex;gap:16px;margin-top:12px;padding-top:12px;border-top:1px solid #f0ede8}
+.tleg{display:flex;align-items:center;gap:5px;font-size:10px;color:#999}
+.tleg-badge{font-size:8px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.03em}
 
 /* NAV */
-.nav{display:flex;align-items:center;padding:8px 24px;background:#f0ede8;border-bottom:1px solid #e2ddd7;position:sticky;top:49px;z-index:40;gap:0}
+.nav{display:flex;align-items:center;padding:8px 24px;background:#f0ede8;border-bottom:1px solid #e2ddd7;position:sticky;top:49px;z-index:40}
 .nav-btn{background:#fff;border:1px solid #ddd;color:#999;width:26px;height:26px;border-radius:5px;cursor:pointer;font-size:13px;font-family:inherit;transition:all .15s}
-.nav-btn:hover{color:#111;border-color:#bbb}
+.nav-btn:hover{color:#111}
 .nav-mo{font-size:13px;font-weight:600;padding:0 16px;min-width:140px;text-align:center}
 .nav-r{margin-left:auto;display:flex;gap:2px;background:#fff;border:1px solid #ddd;border-radius:6px;padding:2px}
 .vbtn{font-size:11px;font-weight:600;padding:3px 12px;border-radius:4px;border:none;background:none;color:#999;cursor:pointer;font-family:inherit;transition:all .15s}
 .vbtn.on{background:#f0ede8;color:#111}
 
-/* CALENDAR GRID */
+/* CALENDAR */
 .cal{padding:0 24px 48px}
 .day-hdrs{display:grid;grid-template-columns:repeat(7,1fr);margin-top:16px}
 .day-hdr{padding:7px 8px;font-size:10px;font-weight:700;color:#ccc;letter-spacing:.07em;text-transform:uppercase;border-right:1px solid #e2ddd7;border-bottom:1px solid #e2ddd7;background:#f7f6f3}
@@ -65,7 +71,7 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#11
 .cell:hover .add-btn{display:flex}
 .add-btn:hover{background:#111;color:#fff}
 
-/* LIST VIEW */
+/* LIST */
 .lv{padding:0 24px 48px;margin-top:16px;display:none}
 .lmo{font-size:10px;font-weight:700;color:#bbb;letter-spacing:.1em;text-transform:uppercase;padding:14px 0 7px;border-bottom:1px solid #e2ddd7}
 .lrow{display:flex;gap:12px;padding:10px 8px;border-bottom:1px solid #e2ddd7;cursor:pointer;border-radius:5px;align-items:flex-start}
@@ -74,33 +80,33 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#11
 .ldot{width:6px;height:6px;border-radius:2px;flex-shrink:0;margin-top:4px}
 .ltitle{font-size:12px;font-weight:600;flex:1;line-height:1.4}
 .lnote{font-size:11px;color:#999;margin-top:2px;line-height:1.4}
-.ltag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;flex-shrink:0;margin-top:2px;letter-spacing:.03em}
+.ltag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;flex-shrink:0;margin-top:2px}
 
 /* MODALS */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 .ov.open{display:flex}
-.modal{background:#fff;border-radius:12px;width:440px;max-width:95vw;padding:22px;position:relative;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.15)}
-.modal-title{font-size:15px;font-weight:700;margin-bottom:16px;letter-spacing:-.01em}
+.modal{background:#fff;border-radius:12px;width:460px;max-width:95vw;padding:22px;position:relative;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.modal-title{font-size:15px;font-weight:700;margin-bottom:16px}
 .mclose{position:absolute;top:12px;right:14px;background:none;border:none;font-size:20px;cursor:pointer;color:#bbb;line-height:1;padding:4px}
 .mclose:hover{color:#111}
 .field{margin-bottom:12px}
 .field label{display:block;font-size:10px;font-weight:700;color:#aaa;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
-.field input,.field textarea{width:100%;background:#f7f6f3;border:1px solid #e2ddd7;border-radius:6px;color:#111;font-family:inherit;font-size:13px;padding:8px 10px;outline:none;transition:border .15s}
-.field input:focus,.field textarea:focus{border-color:#111}
+.field input,.field textarea,.field select{width:100%;background:#f7f6f3;border:1px solid #e2ddd7;border-radius:6px;color:#111;font-family:inherit;font-size:13px;padding:8px 10px;outline:none;transition:border .15s}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#111}
 .field textarea{min-height:60px;resize:vertical}
 .mrow{display:flex;gap:10px}.mrow .field{flex:1}
 .mfooter{display:flex;justify-content:space-between;margin-top:16px;align-items:center;gap:8px}
 .del-btn{font-size:11px;font-weight:600;padding:6px 12px;border-radius:6px;border:1px solid #fcc;background:#fff8f8;color:#c00;cursor:pointer;font-family:inherit}
 .del-btn:hover{background:#fee}
-.pills{display:flex;gap:5px;flex-wrap:wrap}
-.pill{padding:5px 11px;border-radius:5px;border:1px solid #ddd;font-size:11px;font-weight:600;cursor:pointer;color:#999;background:#f7f6f3;font-family:inherit;transition:all .15s}
-.pill:hover{color:#111}
 .checks{display:flex;gap:16px}
 .checks label{display:flex;align-items:center;gap:6px;font-size:12px;color:#888;cursor:pointer}
-.color-row{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
+.color-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 .cswatch{width:24px;height:24px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .15s}
 .cswatch:hover{transform:scale(1.15)}
 .cswatch.sel{border-color:#111;transform:scale(1.1)}
+.pills{display:flex;gap:5px;flex-wrap:wrap}
+.pill{padding:5px 11px;border-radius:5px;border:1px solid #ddd;font-size:11px;font-weight:600;cursor:pointer;color:#999;background:#f7f6f3;font-family:inherit;transition:all .15s}
+.pill:hover{color:#111}
 </style>
 </head>
 <body>
@@ -111,23 +117,26 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#11
     <span class="hdr-sub">Campaign Calendar</span>
   </div>
   <div class="hdr-r">
-    <div class="legend" id="legend"></div>
     <button class="btn" onclick="openCampModal()">+ Campaign</button>
     <button class="btn btn-dark" onclick="openAdd()">+ Event</button>
   </div>
 </div>
 
-<div class="tl">
-  <div class="tl-title">2026 — launches &amp; milestones</div>
-  <div class="tl-outer">
-    <div class="tl-track"></div>
-    <div class="tl-dots" id="tlDots"></div>
-    <div class="tl-mo-labels" id="tlMos"></div>
-    <div class="tl-today-line" id="tlToday"></div>
+<div class="bars-section">
+  <div class="bars-header">
+    <div class="bars-title">2026 Campaign Overview</div>
+    <div class="bars-year">Jan → Dec</div>
+  </div>
+  <div class="bars-outer">
+    <div class="bars-mo-row" id="barsMoRow"></div>
+    <div id="barsRows"></div>
+  </div>
+  <div class="tier-legend">
+    <div class="tleg"><span class="tleg-badge" style="background:rgba(180,64,0,.12);color:#a03800">T1</span> 1,500+ transactions / $150k+ revenue</div>
+    <div class="tleg"><span class="tleg-badge" style="background:rgba(0,109,153,.12);color:#005580">T2</span> 250+ transactions / $25k+ revenue</div>
+    <div class="tleg"><span class="tleg-badge" style="background:rgba(91,53,196,.12);color:#3d25a0">T3</span> &lt;250 transactions</div>
   </div>
 </div>
-
-<div class="tip" id="tip"></div>
 
 <div class="nav">
   <button class="nav-btn" onclick="changeMonth(-1)">&#8592;</button>
@@ -145,7 +154,7 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#11
 </div>
 <div class="lv" id="lv"></div>
 
-<!-- Event modal -->
+<!-- Event Modal -->
 <div class="ov" id="evOv" onclick="if(event.target===this)closeEv()">
   <div class="modal">
     <div class="modal-title" id="evTitle">Add event</div>
@@ -174,17 +183,29 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#11
   </div>
 </div>
 
-<!-- Campaign modal -->
+<!-- Campaign Modal -->
 <div class="ov" id="campOv" onclick="if(event.target===this)closeCamp()">
   <div class="modal">
-    <div class="modal-title">New campaign</div>
+    <div class="modal-title" id="campModalTitle">New campaign</div>
     <button class="mclose" onclick="closeCamp()">×</button>
     <div class="field"><label>Campaign name</label><input id="cName" placeholder="e.g. Summer Sale"/></div>
+    <div class="mrow">
+      <div class="field"><label>Tier</label>
+        <select id="cTier">
+          <option value="1">Tier 1 — $150k+ / 1,500+ tx</option>
+          <option value="2">Tier 2 — $25k+ / 250+ tx</option>
+          <option value="3">Tier 3 — &lt;$25k / &lt;250 tx</option>
+          <option value="0">Internal / No tier</option>
+        </select>
+      </div>
+      <div class="field"><label>Launch date (opt)</label><input id="cLaunch" type="date"/></div>
+    </div>
     <div class="field"><label>Color</label><div class="color-row" id="colorRow"></div></div>
     <div class="mfooter">
+      <button class="del-btn" id="campDelBtn" onclick="deleteCamp()" style="display:none">Delete campaign</button>
       <div style="margin-left:auto;display:flex;gap:8px">
         <button class="btn" onclick="closeCamp()">Cancel</button>
-        <button class="btn btn-dark" onclick="saveCamp()">Create campaign</button>
+        <button class="btn btn-dark" onclick="saveCamp()">Save</button>
       </div>
     </div>
   </div>
@@ -202,212 +223,257 @@ var COLORS = [
   {n:'red',    dot:'#be2828', bg:'rgba(190,40,40,.1)',   txt:'#921e1e'},
 ];
 
+var TIER_PHASES = {
+  1: [
+    {label:'Brief',    weeksOut:9},
+    {label:'Design',   weeksOut:8},
+    {label:'Creative', weeksOut:7},
+    {label:'Tease',    weeksOut:1.5},
+  ],
+  2: [
+    {label:'Brief',    weeksOut:4},
+    {label:'Design',   weeksOut:3},
+    {label:'Creative', weeksOut:2},
+  ],
+  3: [
+    {label:'Brief',    weeksOut:2},
+    {label:'Creative', weeksOut:1},
+  ],
+};
+
 var camps = [
-  {id:'hans',      name:'Hans 2.0',  color:'green'},
-  {id:'plugin',    name:'Plugin',    color:'blue'},
-  {id:'lifecycle', name:'Lifecycle', color:'orange'},
-  {id:'internal',  name:'Internal',  color:'purple'},
+  {id:'hans',      name:'Hans 2',             color:'green',  tier:1, launch:'2026-06-01'},
+  {id:'adobe',     name:'Adobe / Plugin',      color:'blue',   tier:2, launch:'2026-06-22'},
+  {id:'taste',     name:'Taste',               color:'amber',  tier:3, launch:'2026-07-01'},
+  {id:'sfx',       name:'Lifetime SFX',        color:'orange', tier:1, launch:null},
+  {id:'elements',  name:'Lifetime Elements',   color:'teal',   tier:1, launch:null},
+  {id:'ai',        name:'Lifetime AI Credits', color:'purple', tier:1, launch:'2026-09-01'},
+  {id:'filmmaker', name:'Filmmaker Nashville', color:'pink',   tier:2, launch:'2026-10-01'},
+  {id:'internal',  name:'Internal',            color:'red',    tier:0, launch:null},
 ];
 
 var evs = [
-  {id:'e001',title:'Hans 2 kick-off',date:'2026-04-29',campaign:'internal',isLaunch:false,isMilestone:true,audience:'Internal team',notes:'Campaign creative kick-off'},
-  {id:'e002',title:'Send campaign briefs to partners',date:'2026-05-01',campaign:'hans',isLaunch:false,isMilestone:false,audience:'Partners',notes:'2 sent — more to follow week of May 5'},
-  {id:'e003',title:'Plugin hype starts — landing page + email capture',date:'2026-05-07',campaign:'plugin',isLaunch:true,isMilestone:true,audience:'New audience',notes:'Email capture begins. Automated confirmation triggers immediately.'},
-  {id:'e004',title:'Hans 2 creative due — emails + popups',date:'2026-05-08',campaign:'hans',isLaunch:false,isMilestone:true,audience:'Internal',notes:'All Phase 1 assets due from Kate'},
-  {id:'e005',title:'Partner content — run as ads (ongoing)',date:'2026-05-08',campaign:'hans',isLaunch:false,isMilestone:false,audience:'Pro/Pro+ + remarketing',notes:'Run all UGC partner content as ads as it comes in.'},
-  {id:'e006',title:'Plugin: Loom video + how-to PDF due',date:'2026-05-11',campaign:'plugin',isLaunch:false,isMilestone:true,audience:'Internal',notes:'Downloadable package ready before early access'},
-  {id:'e007',title:'Pro/Pro+ early plugin access',date:'2026-05-13',campaign:'plugin',isLaunch:true,isMilestone:true,audience:'Current Pro / Pro+',notes:'Early access rollout begins'},
-  {id:'e008',title:'Plugin public launch',date:'2026-05-18',campaign:'plugin',isLaunch:true,isMilestone:true,audience:'Existing Pro + Pro+',notes:'Email 1 to existing Pro/Pro+. Organic social.'},
-  {id:'e009',title:'Hans 2 video shoot',date:'2026-05-20',campaign:'hans',isLaunch:false,isMilestone:true,audience:'Internal',notes:'Hero concept shoot. All launch assets built from this footage.'},
-  {id:'e010',title:'Lifecycle: segmentation + routing live',date:'2026-05-21',campaign:'lifecycle',isLaunch:false,isMilestone:true,audience:'Internal',notes:'All 4 guest tiers routing correctly.'},
-  {id:'e011',title:'Lifecycle: all email copy approved',date:'2026-05-23',campaign:'lifecycle',isLaunch:false,isMilestone:true,audience:'Internal',notes:'All 4 tracks signed off'},
-  {id:'e012',title:'Lifetime plugin upsell window opens',date:'2026-05-25',campaign:'plugin',isLaunch:false,isMilestone:true,audience:'Existing Pro + Pro+',notes:'Exact date TBD May 25–Jun 1.'},
-  {id:'e013',title:'Hans 2.0 full launch',date:'2026-05-26',campaign:'hans',isLaunch:true,isMilestone:true,audience:'Current Pro/Pro+',notes:'Emails, popups, organic, paid all launch together.'},
-  {id:'e014',title:'Lifecycle: Klaviyo flows built + QA\'d',date:'2026-05-26',campaign:'lifecycle',isLaunch:false,isMilestone:true,audience:'Internal',notes:'All 8 flows tested.'},
-  {id:'e015',title:'Lifecycle go-live',date:'2026-05-29',campaign:'lifecycle',isLaunch:true,isMilestone:true,audience:'New signups',notes:'All flows active, signup question live, Wisepops popups live'},
-  {id:'e016',title:'Hans 2.0 Phase 2 — prospecting ads',date:'2026-06-01',campaign:'hans',isLaunch:false,isMilestone:true,audience:'New/cold audience',notes:'UGC + static ads to cold prospecting.'},
+  {id:'e001',title:'Hans 2 kick-off meeting',date:'2026-04-29',campaign:'internal',isLaunch:false,isMilestone:true,audience:'Internal',notes:'Campaign creative kick-off'},
+  {id:'e002',title:'Hans 2 — send briefs to partners',date:'2026-05-01',campaign:'hans',isLaunch:false,isMilestone:false,audience:'Partners',notes:'2 sent — more to follow'},
+  {id:'e003',title:'Hans 2 creative due',date:'2026-05-08',campaign:'hans',isLaunch:false,isMilestone:true,audience:'Internal',notes:'Phase 1 assets due from Kate'},
+  {id:'e004',title:'Hans 2 video shoot',date:'2026-05-20',campaign:'hans',isLaunch:false,isMilestone:true,audience:'Internal',notes:'Hero concept shoot'},
+  {id:'e005',title:'Hans 2.0 full launch',date:'2026-06-01',campaign:'hans',isLaunch:true,isMilestone:true,audience:'Pro/Pro+',notes:'All channels live'},
+  {id:'e006',title:'Adobe / Plugin launch',date:'2026-06-22',campaign:'adobe',isLaunch:true,isMilestone:true,audience:'Existing Pro+',notes:''},
+  {id:'e007',title:'Taste launch',date:'2026-07-01',campaign:'taste',isLaunch:true,isMilestone:true,audience:'All users',notes:'Blog + email mix'},
+  {id:'e008',title:'Lifetime AI Credits launch',date:'2026-09-01',campaign:'ai',isLaunch:true,isMilestone:true,audience:'TBD',notes:'Early fall'},
+  {id:'e009',title:'Filmmaker Event — Nashville',date:'2026-10-01',campaign:'filmmaker',isLaunch:true,isMilestone:true,audience:'Filmmakers',notes:'October, exact date TBD'},
 ];
 
-// Load saved data from localStorage if available
-(function() {
-  try {
-    var sc = localStorage.getItem('aud_camps');
-    var se = localStorage.getItem('aud_evs');
-    if (sc) camps = JSON.parse(sc);
-    if (se) evs = JSON.parse(se);
-  } catch(e) {}
-})();
+try {
+  var sc = localStorage.getItem('aud_camps_v4');
+  var se = localStorage.getItem('aud_evs_v4');
+  if (sc) camps = JSON.parse(sc);
+  if (se) evs   = JSON.parse(se);
+} catch(e) {}
 
-var filters = new Set(camps.map(function(c){return c.id}));
 var yr = 2026, mo = 4, view = 'month';
-var editId = null, selCamp = null, selColor = 'green', dragId = null;
+var editId = null, editCampId = null, selCamp = null, selColor = 'green', dragId = null;
 
 function save() {
   try {
-    localStorage.setItem('aud_camps', JSON.stringify(camps));
-    localStorage.setItem('aud_evs', JSON.stringify(evs));
+    localStorage.setItem('aud_camps_v4', JSON.stringify(camps));
+    localStorage.setItem('aud_evs_v4',   JSON.stringify(evs));
   } catch(e) {}
 }
 
 function fmt(d) {
-  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
-function getCamp(id) { return camps.find(function(c){return c.id===id}); }
-function getCol(n) { return COLORS.find(function(c){return c.n===n}) || COLORS[0]; }
-function campDot(id) { var c=getCamp(id); return c ? getCol(c.color).dot : '#888'; }
-function campBg(id)  { var c=getCamp(id); return c ? getCol(c.color).bg  : 'rgba(0,0,0,.05)'; }
-function campTxt(id) { var c=getCamp(id); return c ? getCol(c.color).txt : '#444'; }
-function icon(ev) { return ev.isLaunch ? '🚀 ' : ev.isMilestone ? '🎯 ' : ''; }
+function addDays(dateStr, days) {
+  var d = new Date(dateStr+'T00:00:00');
+  d.setDate(d.getDate() + days);
+  return fmt(d);
+}
+function getCamp(id)  { return camps.find(function(c){return c.id===id}); }
+function getCol(n)    { return COLORS.find(function(c){return c.n===n})||COLORS[0]; }
+function campDot(id)  { var c=getCamp(id); return c?getCol(c.color).dot:'#888'; }
+function campBg(id)   { var c=getCamp(id); return c?getCol(c.color).bg:'rgba(0,0,0,.05)'; }
+function campTxt(id)  { var c=getCamp(id); return c?getCol(c.color).txt:'#444'; }
+function icon(ev)     { return ev.isLaunch?'🚀 ':ev.isMilestone?'🎯 ':''; }
 
-function renderLegend() {
-  var el = document.getElementById('legend'); el.innerHTML = '';
-  camps.forEach(function(c) {
-    var col = getCol(c.color);
-    var d = document.createElement('div');
-    d.className = 'leg' + (filters.has(c.id) ? ' on' : '');
-    d.dataset.id = c.id;
-    d.innerHTML = '<div class="leg-dot" style="background:' + col.dot + '"></div>' + c.name;
-    d.onclick = function(){ toggleFilter(c.id); };
-    el.appendChild(d);
-  });
+function tierBadgeStyle(tier) {
+  if (tier==1) return 'background:rgba(180,64,0,.12);color:#a03800';
+  if (tier==2) return 'background:rgba(0,109,153,.12);color:#005580';
+  if (tier==3) return 'background:rgba(91,53,196,.12);color:#3d25a0';
+  return 'background:#f0ede8;color:#999';
+}
+function tierLabel(tier) {
+  if (tier==1) return 'T1';
+  if (tier==2) return 'T2';
+  if (tier==3) return 'T3';
+  return '';
 }
 
-function renderTimeline() {
-  var dotsEl = document.getElementById('tlDots');
-  var mosEl  = document.getElementById('tlMos');
-  dotsEl.innerHTML = ''; mosEl.innerHTML = '';
+/* ---- CAMPAIGN BARS ---- */
+function renderBars() {
+  var moRow = document.getElementById('barsMoRow');
+  var rows  = document.getElementById('barsRows');
+  moRow.innerHTML = ''; rows.innerHTML = '';
 
-  var start = new Date(2026, 0, 1).getTime();
-  var end   = new Date(2026, 11, 31, 23, 59).getTime();
-  var span  = end - start;
+  var MOS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var startY = new Date(2026,0,1).getTime();
+  var endY   = new Date(2026,11,31,23,59).getTime();
+  var span   = endY - startY;
 
   function pct(dateStr) {
-    return ((new Date(dateStr + 'T00:00:00').getTime() - start) / span * 100);
+    if (!dateStr) return null;
+    return ((new Date(dateStr+'T00:00:00').getTime()-startY)/span*100);
   }
 
-  // Month labels
-  var mos = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  mos.forEach(function(name, i) {
-    var p = ((new Date(2026, i, 1).getTime() - start) / span * 100);
+  // Month header
+  MOS.forEach(function(m,i){
     var el = document.createElement('div');
-    el.className = 'tl-mo';
-    el.style.left = p + '%';
-    el.textContent = name;
-    mosEl.appendChild(el);
+    el.className = 'bars-mo';
+    el.textContent = m;
+    moRow.appendChild(el);
   });
 
-  // Today marker
-  var todayD = new Date(); todayD.setHours(0,0,0,0);
-  if (todayD.getFullYear() === 2026) {
-    document.getElementById('tlToday').style.left = pct(fmt(todayD)) + '%';
-    document.getElementById('tlToday').style.display = 'block';
-  } else {
-    document.getElementById('tlToday').style.display = 'none';
-  }
+  // Today pct
+  var todayPct = pct(fmt(new Date()));
 
-  // Dots — launches + milestones only
-  var dots = evs.filter(function(e) {
-    return (e.isLaunch || e.isMilestone) && filters.has(e.campaign) && e.date.startsWith('2026');
-  }).sort(function(a, b) { return a.date.localeCompare(b.date); });
+  // One row per non-internal campaign
+  camps.filter(function(c){return c.tier > 0}).forEach(function(camp) {
+    var col = getCol(camp.color);
+    var row = document.createElement('div');
+    row.className = 'bar-row';
 
-  var placed = [];
-  dots.forEach(function(ev) {
-    var p = pct(ev.date);
-    var col = getCol((getCamp(ev.campaign) || {color:'green'}).color);
-    var nearby = placed.filter(function(x){ return Math.abs(x - p) < 4; }).length;
-    var above = nearby % 2 === 1;
-    placed.push(p);
+    // Label
+    var lbl = document.createElement('div');
+    lbl.className = 'bar-label';
+    var tl = tierLabel(camp.tier);
+    lbl.innerHTML =
+      '<span class="bar-label-name" title="'+camp.name+'">'+camp.name+'</span>' +
+      (tl ? '<span class="tier-badge" style="'+tierBadgeStyle(camp.tier)+'">'+tl+'</span>' : '');
+    lbl.style.cursor = 'pointer';
+    lbl.onclick = function(){ openCampEdit(camp.id); };
+    row.appendChild(lbl);
 
-    var dot = document.createElement('div');
-    dot.className = 'tl-dot' + (above ? ' above' : '');
-    dot.style.left = p + '%';
-    dot.style.background = col.dot;
+    // Track
+    var track = document.createElement('div');
+    track.className = 'bar-track';
 
-    dot.onmouseenter = function(e) {
-      var tip = document.getElementById('tip');
-      var d = new Date(ev.date + 'T00:00:00');
-      var ds = d.toLocaleString('default', {month:'short', day:'numeric'});
-      tip.innerHTML = '<span style="opacity:.6;font-size:10px">' + ds + '</span><br>' + icon(ev) + ev.title;
-      tip.style.display = 'block';
-      tip.style.left = (e.clientX + 12) + 'px';
-      tip.style.top  = (e.clientY - 36) + 'px';
-    };
-    dot.onmousemove = function(e) {
-      var tip = document.getElementById('tip');
-      tip.style.left = (e.clientX + 12) + 'px';
-      tip.style.top  = (e.clientY - 36) + 'px';
-    };
-    dot.onmouseleave = function() { document.getElementById('tip').style.display = 'none'; };
-    dot.onclick = function() {
-      var d = new Date(ev.date + 'T00:00:00');
-      yr = d.getFullYear(); mo = d.getMonth();
-      setView('month'); render();
-    };
-    dotsEl.appendChild(dot);
+    // Today line
+    if (todayPct >= 0 && todayPct <= 100) {
+      var tl2 = document.createElement('div');
+      tl2.className = 'bar-today';
+      tl2.style.left = todayPct + '%';
+      track.appendChild(tl2);
+    }
+
+    if (!camp.launch) {
+      // TBD
+      var tbd = document.createElement('div');
+      tbd.className = 'bar-tdb';
+      tbd.textContent = 'TBD';
+      track.appendChild(tbd);
+    } else {
+      var lp = pct(camp.launch);
+      var phases = TIER_PHASES[camp.tier] || [];
+
+      if (phases.length) {
+        // Find earliest phase
+        var earliestPhase = phases[phases.length-1];
+        var earliestDate  = addDays(camp.launch, -Math.round(earliestPhase.weeksOut * 7));
+        var ep = pct(earliestDate);
+
+        // Bar fill from earliest phase to launch
+        var fill = document.createElement('div');
+        fill.className = 'bar-fill';
+        fill.style.left  = Math.max(0,ep) + '%';
+        fill.style.width = (lp - Math.max(0,ep)) + '%';
+        fill.style.background = col.dot;
+        track.appendChild(fill);
+
+        // Phase markers
+        phases.forEach(function(phase) {
+          var phaseDate = addDays(camp.launch, -Math.round(phase.weeksOut * 7));
+          var pp = pct(phaseDate);
+          if (pp < 0 || pp > 100) return;
+          var marker = document.createElement('div');
+          marker.className = 'bar-phase';
+          marker.style.left  = pp + '%';
+          marker.style.color = col.txt;
+          marker.textContent = phase.label;
+          track.appendChild(marker);
+        });
+      }
+
+      // Launch marker
+      if (lp >= 0 && lp <= 100) {
+        var launch = document.createElement('div');
+        launch.className = 'bar-launch';
+        launch.style.left = lp + '%';
+        launch.textContent = '🚀';
+        launch.title = camp.name + ' launch: ' + camp.launch;
+        track.appendChild(launch);
+      }
+    }
+
+    row.appendChild(track);
+    rows.appendChild(row);
   });
 }
 
+/* ---- CALENDAR ---- */
 function render() {
-  document.getElementById('navMo').textContent = new Date(yr, mo).toLocaleString('default', {month:'long', year:'numeric'});
-  renderLegend();
-  renderTimeline();
-  if (view === 'month') renderMonth(); else renderList();
+  document.getElementById('navMo').textContent = new Date(yr,mo).toLocaleString('default',{month:'long',year:'numeric'});
+  renderBars();
+  if (view==='month') renderMonth(); else renderList();
 }
 
 function renderMonth() {
   document.getElementById('cal').style.display = 'block';
   document.getElementById('lv').style.display  = 'none';
-
   var dh = document.getElementById('dayHdrs'); dh.innerHTML = '';
-  ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(function(d) {
-    var h = document.createElement('div'); h.className = 'day-hdr'; h.textContent = d; dh.appendChild(h);
+  ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(function(d){
+    var h=document.createElement('div');h.className='day-hdr';h.textContent=d;dh.appendChild(h);
   });
-
-  var grid  = document.getElementById('grid'); grid.innerHTML = '';
-  var first = new Date(yr, mo, 1).getDay();
-  var dim   = new Date(yr, mo+1, 0).getDate();
-  var dipm  = new Date(yr, mo, 0).getDate();
+  var grid  = document.getElementById('grid'); grid.innerHTML='';
+  var first = new Date(yr,mo,1).getDay();
+  var dim   = new Date(yr,mo+1,0).getDate();
+  var dipm  = new Date(yr,mo,0).getDate();
   var today = new Date(); today.setHours(0,0,0,0);
   var cells = [];
-  for (var i = first-1; i >= 0; i--) cells.push({d: dipm-i, o: true});
-  for (var d = 1; d <= dim; d++) cells.push({d: d, o: false});
-  while (cells.length % 7) cells.push({d: cells.length - dim - first + 1, o: true});
+  for (var i=first-1;i>=0;i--) cells.push({d:dipm-i,o:true});
+  for (var d=1;d<=dim;d++)     cells.push({d:d,o:false});
+  while (cells.length%7)       cells.push({d:cells.length-dim-first+1,o:true});
 
-  cells.forEach(function(c) {
-    var cell = document.createElement('div');
-    cell.className = 'cell' + (c.o ? ' other' : '');
-    var cm = c.o && c.d > 15 ? mo-1 : c.o ? mo+1 : mo;
-    var dt = new Date(yr, cm, c.d); dt.setHours(0,0,0,0);
-    if (dt.getTime() === today.getTime()) cell.classList.add('today');
-    var ds = fmt(dt);
-    cell.innerHTML = '<div class="dnum">' + c.d + '</div>' +
-      '<button class="add-btn" onclick="event.stopPropagation();openAdd(\'' + ds + '\')">+</button>';
+  cells.forEach(function(c){
+    var cell=document.createElement('div');
+    cell.className='cell'+(c.o?' other':'');
+    var cm=c.o&&c.d>15?mo-1:c.o?mo+1:mo;
+    var dt=new Date(yr,cm,c.d);dt.setHours(0,0,0,0);
+    if(dt.getTime()===today.getTime()) cell.classList.add('today');
+    var ds=fmt(dt);
+    cell.innerHTML='<div class="dnum">'+c.d+'</div><button class="add-btn" onclick="event.stopPropagation();openAdd(\''+ds+'\')">+</button>';
 
-    evs.filter(function(e){ return e.date === ds && filters.has(e.campaign); }).forEach(function(ev) {
-      var el = document.createElement('div'); el.className = 'ev';
+    evs.filter(function(e){return e.date===ds;}).forEach(function(ev){
+      var el=document.createElement('div');el.className='ev';
       el.style.background  = campBg(ev.campaign);
       el.style.borderColor = campDot(ev.campaign);
       el.style.color       = campTxt(ev.campaign);
-      el.textContent = icon(ev) + ev.title;
-      el.title = (ev.audience ? ev.audience + '\n' : '') + ev.notes;
-      el.draggable = true;
-      el.onclick = function(e) { e.stopPropagation(); openEdit(ev.id); };
-      el.ondragstart = function(e) {
-        dragId = ev.id; e.dataTransfer.effectAllowed = 'move';
-        setTimeout(function(){ el.style.opacity = '.3'; }, 0);
-      };
-      el.ondragend = function() { el.style.opacity = '1'; };
+      el.textContent = icon(ev)+ev.title;
+      el.title=(ev.audience?ev.audience+'\n':'')+ev.notes;
+      el.draggable=true;
+      el.onclick=function(e){e.stopPropagation();openEdit(ev.id);};
+      el.ondragstart=function(e){dragId=ev.id;e.dataTransfer.effectAllowed='move';setTimeout(function(){el.style.opacity='.3';},0);};
+      el.ondragend=function(){el.style.opacity='1';};
       cell.appendChild(el);
     });
 
-    cell.ondragover  = function(e) { e.preventDefault(); cell.style.outline = '2px dashed #bbb'; };
-    cell.ondragleave = function()  { cell.style.outline = ''; };
-    cell.ondrop = function(e) {
-      e.preventDefault(); cell.style.outline = '';
-      if (dragId) {
-        var ev = evs.find(function(e){ return e.id === dragId; });
-        if (ev) { ev.date = ds; save(); render(); }
-        dragId = null;
+    cell.ondragover  = function(e){e.preventDefault();cell.style.outline='2px dashed #bbb';};
+    cell.ondragleave = function(){cell.style.outline='';};
+    cell.ondrop = function(e){
+      e.preventDefault();cell.style.outline='';
+      if(dragId){
+        var ev=evs.find(function(e){return e.id===dragId;});
+        if(ev){ev.date=ds;save();render();}
+        dragId=null;
       }
     };
     grid.appendChild(cell);
@@ -415,179 +481,187 @@ function renderMonth() {
 }
 
 function renderList() {
-  document.getElementById('cal').style.display = 'none';
-  var lv = document.getElementById('lv'); lv.style.display = 'block'; lv.innerHTML = '';
-  var sorted = evs.filter(function(e){ return filters.has(e.campaign); })
-    .sort(function(a,b){ return a.date.localeCompare(b.date); });
-  if (!sorted.length) {
-    lv.innerHTML = '<div style="padding:48px;color:#ccc;text-align:center">No events to show</div>';
-    return;
-  }
-  var lastMo = null;
-  sorted.forEach(function(ev) {
-    var d = new Date(ev.date + 'T00:00:00');
-    var mk = d.getFullYear() + '-' + d.getMonth();
-    if (mk !== lastMo) {
-      lastMo = mk;
-      var mh = document.createElement('div'); mh.className = 'lmo';
-      mh.textContent = d.toLocaleString('default', {month:'long', year:'numeric'});
+  document.getElementById('cal').style.display='none';
+  var lv=document.getElementById('lv');lv.style.display='block';lv.innerHTML='';
+  var sorted=evs.slice().sort(function(a,b){return a.date.localeCompare(b.date);});
+  if(!sorted.length){lv.innerHTML='<div style="padding:48px;color:#ccc;text-align:center">No events</div>';return;}
+  var lastMo=null;
+  sorted.forEach(function(ev){
+    var d=new Date(ev.date+'T00:00:00');
+    var mk=d.getFullYear()+'-'+d.getMonth();
+    if(mk!==lastMo){
+      lastMo=mk;
+      var mh=document.createElement('div');mh.className='lmo';
+      mh.textContent=d.toLocaleString('default',{month:'long',year:'numeric'});
       lv.appendChild(mh);
     }
-    var col = getCol((getCamp(ev.campaign) || {color:'green'}).color);
-    var campName = (getCamp(ev.campaign) || {name: ev.campaign}).name;
-    var ds = d.toLocaleString('default', {month:'short', day:'numeric'});
-    var row = document.createElement('div'); row.className = 'lrow';
-    row.innerHTML =
-      '<div class="ldate">' + ds + '</div>' +
-      '<div class="ldot" style="background:' + col.dot + '"></div>' +
-      '<div style="flex:1">' +
-        '<div class="ltitle" style="color:' + col.txt + '">' + icon(ev) + ev.title + '</div>' +
-        (ev.notes ? '<div class="lnote">' + ev.notes + '</div>' : '') +
-      '</div>' +
-      '<span class="ltag" style="background:' + col.bg + ';color:' + col.txt + '">' + campName + '</span>';
-    row.onclick = function(){ openEdit(ev.id); };
+    var col=getCol((getCamp(ev.campaign)||{color:'green'}).color);
+    var campName=(getCamp(ev.campaign)||{name:ev.campaign}).name;
+    var ds=d.toLocaleString('default',{month:'short',day:'numeric'});
+    var row=document.createElement('div');row.className='lrow';
+    row.innerHTML=
+      '<div class="ldate">'+ds+'</div>'+
+      '<div class="ldot" style="background:'+col.dot+'"></div>'+
+      '<div style="flex:1"><div class="ltitle" style="color:'+col.txt+'">'+icon(ev)+ev.title+'</div>'+
+      (ev.notes?'<div class="lnote">'+ev.notes+'</div>':'')+
+      '</div><span class="ltag" style="background:'+col.bg+';color:'+col.txt+'">'+campName+'</span>';
+    row.onclick=function(){openEdit(ev.id);};
     lv.appendChild(row);
   });
 }
 
+/* ---- EVENT MODAL ---- */
 function buildPills(sel) {
-  var el = document.getElementById('evPills'); el.innerHTML = '';
-  camps.forEach(function(c) {
-    var col = getCol(c.color);
-    var p = document.createElement('div'); p.className = 'pill' + (sel === c.id ? ' sel' : '');
-    if (sel === c.id) { p.style.background = col.bg; p.style.borderColor = col.dot; p.style.color = col.txt; p.style.borderWidth = '1.5px'; }
-    p.textContent = c.name;
-    p.onclick = function() {
-      selCamp = c.id;
-      document.querySelectorAll('.pill').forEach(function(x){ x.classList.remove('sel'); x.style.cssText = ''; });
-      p.classList.add('sel'); p.style.background = col.bg; p.style.borderColor = col.dot; p.style.color = col.txt; p.style.borderWidth = '1.5px';
+  var el=document.getElementById('evPills');el.innerHTML='';
+  camps.forEach(function(c){
+    var col=getCol(c.color);
+    var p=document.createElement('div');p.className='pill'+(sel===c.id?' sel':'');
+    if(sel===c.id){p.style.background=col.bg;p.style.borderColor=col.dot;p.style.color=col.txt;p.style.borderWidth='1.5px';}
+    p.textContent=c.name;
+    p.onclick=function(){
+      selCamp=c.id;
+      document.querySelectorAll('.pill').forEach(function(x){x.classList.remove('sel');x.style.cssText='';});
+      p.classList.add('sel');p.style.background=col.bg;p.style.borderColor=col.dot;p.style.color=col.txt;p.style.borderWidth='1.5px';
     };
     el.appendChild(p);
   });
 }
 
 function openAdd(ds) {
-  editId = null; selCamp = camps[0] ? camps[0].id : null;
-  document.getElementById('evTitle').textContent = 'Add event';
-  ['fT','fA','fN'].forEach(function(id){ document.getElementById(id).value = ''; });
-  document.getElementById('fD').value = ds || fmt(new Date());
-  document.getElementById('fE').value = '';
-  document.getElementById('fLa').checked = false;
-  document.getElementById('fMi').checked = false;
-  document.getElementById('delBtn').style.display = 'none';
+  editId=null;selCamp=camps[0]?camps[0].id:null;
+  document.getElementById('evTitle').textContent='Add event';
+  ['fT','fA','fN'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('fD').value=ds||fmt(new Date());
+  document.getElementById('fE').value='';
+  document.getElementById('fLa').checked=false;
+  document.getElementById('fMi').checked=false;
+  document.getElementById('delBtn').style.display='none';
   buildPills(selCamp);
   document.getElementById('evOv').classList.add('open');
-  setTimeout(function(){ document.getElementById('fT').focus(); }, 50);
+  setTimeout(function(){document.getElementById('fT').focus();},50);
 }
 
 function openEdit(id) {
-  var ev = evs.find(function(e){ return e.id === id; }); if (!ev) return;
-  editId = id; selCamp = ev.campaign;
-  document.getElementById('evTitle').textContent = 'Edit event';
-  document.getElementById('fT').value = ev.title;
-  document.getElementById('fD').value = ev.date;
-  document.getElementById('fE').value = ev.endDate || '';
-  document.getElementById('fA').value = ev.audience || '';
-  document.getElementById('fN').value = ev.notes || '';
-  document.getElementById('fLa').checked = !!ev.isLaunch;
-  document.getElementById('fMi').checked = !!ev.isMilestone;
-  document.getElementById('delBtn').style.display = 'block';
+  var ev=evs.find(function(e){return e.id===id;});if(!ev)return;
+  editId=id;selCamp=ev.campaign;
+  document.getElementById('evTitle').textContent='Edit event';
+  document.getElementById('fT').value=ev.title;
+  document.getElementById('fD').value=ev.date;
+  document.getElementById('fE').value=ev.endDate||'';
+  document.getElementById('fA').value=ev.audience||'';
+  document.getElementById('fN').value=ev.notes||'';
+  document.getElementById('fLa').checked=!!ev.isLaunch;
+  document.getElementById('fMi').checked=!!ev.isMilestone;
+  document.getElementById('delBtn').style.display='block';
   buildPills(selCamp);
   document.getElementById('evOv').classList.add('open');
-  setTimeout(function(){ document.getElementById('fT').focus(); }, 50);
+  setTimeout(function(){document.getElementById('fT').focus();},50);
 }
 
 function saveEv() {
-  var title = document.getElementById('fT').value.trim(); if (!title) return;
-  var ev = {
-    id: editId || 'e' + Date.now(),
-    title: title,
-    date: document.getElementById('fD').value,
-    endDate: document.getElementById('fE').value || undefined,
-    campaign: selCamp || 'internal',
-    isLaunch: document.getElementById('fLa').checked,
-    isMilestone: document.getElementById('fMi').checked,
-    audience: document.getElementById('fA').value.trim(),
-    notes: document.getElementById('fN').value.trim()
+  var title=document.getElementById('fT').value.trim();if(!title)return;
+  var ev={
+    id:editId||'e'+Date.now(),
+    title:title,
+    date:document.getElementById('fD').value,
+    endDate:document.getElementById('fE').value||undefined,
+    campaign:selCamp||'internal',
+    isLaunch:document.getElementById('fLa').checked,
+    isMilestone:document.getElementById('fMi').checked,
+    audience:document.getElementById('fA').value.trim(),
+    notes:document.getElementById('fN').value.trim()
   };
-  if (editId) {
-    var i = evs.findIndex(function(e){ return e.id === editId; });
-    if (i > -1) evs[i] = ev;
-  } else {
-    evs.push(ev);
-  }
-  save(); closeEv(); render();
+  if(editId){var i=evs.findIndex(function(e){return e.id===editId;});if(i>-1)evs[i]=ev;}
+  else evs.push(ev);
+  save();closeEv();render();
 }
 
 function deleteEv() {
-  if (!editId || !confirm('Delete this event?')) return;
-  evs = evs.filter(function(e){ return e.id !== editId; });
-  save(); closeEv(); render();
+  if(!editId||!confirm('Delete this event?'))return;
+  evs=evs.filter(function(e){return e.id!==editId;});
+  save();closeEv();render();
 }
+function closeEv(){document.getElementById('evOv').classList.remove('open');}
 
-function closeEv() { document.getElementById('evOv').classList.remove('open'); }
-
-function openCampModal() {
-  selColor = 'green';
-  document.getElementById('cName').value = '';
-  var row = document.getElementById('colorRow'); row.innerHTML = '';
-  COLORS.forEach(function(c) {
-    var el = document.createElement('div');
-    el.className = 'cswatch' + (selColor === c.n ? ' sel' : '');
-    el.style.background = c.dot; el.title = c.n;
-    el.onclick = function() {
-      selColor = c.n;
-      document.querySelectorAll('.cswatch').forEach(function(x){ x.classList.remove('sel'); });
+/* ---- CAMPAIGN MODAL ---- */
+function buildColorSwatches(selected) {
+  var row=document.getElementById('colorRow');row.innerHTML='';
+  COLORS.forEach(function(c){
+    var el=document.createElement('div');
+    el.className='cswatch'+(selected===c.n?' sel':'');
+    el.style.background=c.dot;el.title=c.n;
+    el.onclick=function(){
+      selColor=c.n;
+      document.querySelectorAll('.cswatch').forEach(function(x){x.classList.remove('sel');});
       el.classList.add('sel');
     };
     row.appendChild(el);
   });
+}
+
+function openCampModal() {
+  editCampId=null;selColor='green';
+  document.getElementById('campModalTitle').textContent='New campaign';
+  document.getElementById('cName').value='';
+  document.getElementById('cTier').value='1';
+  document.getElementById('cLaunch').value='';
+  document.getElementById('campDelBtn').style.display='none';
+  buildColorSwatches('green');
   document.getElementById('campOv').classList.add('open');
-  setTimeout(function(){ document.getElementById('cName').focus(); }, 50);
+  setTimeout(function(){document.getElementById('cName').focus();},50);
+}
+
+function openCampEdit(id) {
+  var c=getCamp(id);if(!c)return;
+  editCampId=id;selColor=c.color;
+  document.getElementById('campModalTitle').textContent='Edit campaign';
+  document.getElementById('cName').value=c.name;
+  document.getElementById('cTier').value=c.tier;
+  document.getElementById('cLaunch').value=c.launch||'';
+  document.getElementById('campDelBtn').style.display='block';
+  buildColorSwatches(c.color);
+  document.getElementById('campOv').classList.add('open');
+  setTimeout(function(){document.getElementById('cName').focus();},50);
 }
 
 function saveCamp() {
-  var name = document.getElementById('cName').value.trim(); if (!name) return;
-  var id = 'camp_' + Date.now();
-  camps.push({id: id, name: name, color: selColor});
-  filters.add(id);
-  save(); closeCamp(); render();
-}
-
-function closeCamp() { document.getElementById('campOv').classList.remove('open'); }
-
-function toggleFilter(id) {
-  var leg = document.querySelector('.leg[data-id="' + id + '"]');
-  if (filters.has(id)) {
-    if (filters.size === 1) return;
-    filters.delete(id);
-    if (leg) leg.classList.remove('on');
+  var name=document.getElementById('cName').value.trim();if(!name)return;
+  var tier=parseInt(document.getElementById('cTier').value)||0;
+  var launch=document.getElementById('cLaunch').value||null;
+  if(editCampId){
+    var c=getCamp(editCampId);
+    if(c){c.name=name;c.tier=tier;c.launch=launch;c.color=selColor;}
   } else {
-    filters.add(id);
-    if (leg) leg.classList.add('on');
+    camps.push({id:'camp_'+Date.now(),name:name,color:selColor,tier:tier,launch:launch});
   }
+  save();closeCamp();render();
+}
+
+function deleteCamp() {
+  if(!editCampId||!confirm('Delete this campaign? Events will remain.'))return;
+  camps=camps.filter(function(c){return c.id!==editCampId;});
+  save();closeCamp();render();
+}
+function closeCamp(){document.getElementById('campOv').classList.remove('open');}
+
+function changeMonth(dir){
+  mo+=dir;
+  if(mo>11){mo=0;yr++;}
+  if(mo<0){mo=11;yr--;}
+  render();
+}
+function setView(v){
+  view=v;
+  document.getElementById('vM').classList.toggle('on',v==='month');
+  document.getElementById('vL').classList.toggle('on',v==='list');
   render();
 }
 
-function changeMonth(dir) {
-  mo += dir;
-  if (mo > 11) { mo = 0; yr++; }
-  if (mo < 0)  { mo = 11; yr--; }
-  render();
-}
-
-function setView(v) {
-  view = v;
-  document.getElementById('vM').classList.toggle('on', v === 'month');
-  document.getElementById('vL').classList.toggle('on', v === 'list');
-  render();
-}
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') { closeEv(); closeCamp(); }
-  if (!document.getElementById('evOv').classList.contains('open') && !document.getElementById('campOv').classList.contains('open')) {
-    if (e.key === 'ArrowLeft')  changeMonth(-1);
-    if (e.key === 'ArrowRight') changeMonth(1);
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){closeEv();closeCamp();}
+  if(!document.getElementById('evOv').classList.contains('open')&&!document.getElementById('campOv').classList.contains('open')){
+    if(e.key==='ArrowLeft')  changeMonth(-1);
+    if(e.key==='ArrowRight') changeMonth(1);
   }
 });
 
