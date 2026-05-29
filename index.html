@@ -18,27 +18,24 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#11
 .btn-dark{background:#111;color:#fff;border-color:#111}
 .btn-dark:hover{opacity:.85}
 
-/* CAMPAIGN BARS */
-.bars-section{background:#fff;border-bottom:1px solid #e2ddd7;padding:20px 24px 18px}
-.bars-title{font-size:10px;font-weight:700;color:#bbb;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
-.bars-outer{position:relative}
-.bars-mo-row{display:flex;margin-bottom:6px;padding-left:160px}
-.bars-mo{flex:1;font-size:9px;color:#ccc;font-weight:600;letter-spacing:.04em;text-align:left}
-.bar-row{display:flex;align-items:center;margin-bottom:10px}
-.bar-label{width:160px;flex-shrink:0;padding-right:14px;display:flex;align-items:center;gap:6px;cursor:pointer}
-.bar-label:hover .bar-label-name{color:#111}
-.bar-label-name{font-size:11px;font-weight:600;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:110px}
+/* OVERVIEW */
+.overview{background:#fff;border-bottom:1px solid #e2ddd7;padding:20px 24px}
+.overview-title{font-size:10px;font-weight:700;color:#bbb;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.camp-row{display:flex;align-items:baseline;gap:0;padding:9px 0;border-bottom:1px solid #f0ede8;flex-wrap:wrap;gap:6px}
+.camp-row:last-child{border-bottom:none}
+.camp-name{font-size:12px;font-weight:700;color:#111;width:180px;flex-shrink:0;display:flex;align-items:center;gap:6px;cursor:pointer}
+.camp-name:hover{opacity:.75}
 .tier-badge{font-size:8px;font-weight:700;padding:2px 5px;border-radius:3px;flex-shrink:0;letter-spacing:.03em}
-.bar-track{flex:1;height:24px;position:relative;background:#f7f6f3;border-radius:4px;overflow:visible}
-.bar-fill{position:absolute;height:100%;border-radius:4px;top:0;opacity:.12}
-.bar-phase-marker{position:absolute;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;z-index:2}
-.bar-phase-tick{width:1px;height:8px;opacity:.4;margin-top:8px}
-.bar-phase-label{font-size:8px;font-weight:700;white-space:nowrap;margin-top:2px;opacity:.75;letter-spacing:.02em}
-.bar-launch{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:14px;z-index:3;cursor:default;line-height:1}
-.bar-tbd{font-size:10px;font-weight:600;color:#ccc;padding:0 10px;line-height:24px}
-.bar-today{position:absolute;top:-4px;bottom:-4px;width:1px;background:#111;opacity:.12;z-index:1}
+.camp-phases{display:flex;align-items:center;gap:0;flex-wrap:wrap;flex:1}
+.phase{display:flex;align-items:center;gap:6px}
+.phase-arrow{color:#ddd;font-size:10px;margin:0 4px}
+.phase-label{font-size:10px;font-weight:600;color:#999}
+.phase-date{font-size:11px;font-weight:600}
+.phase-launch .phase-label{color:#111}
+.phase-launch .phase-date{color:#111}
+.camp-tbd{font-size:11px;color:#ccc;font-weight:600;font-style:italic}
 
-.tier-legend{display:flex;gap:20px;margin-top:14px;padding-top:12px;border-top:1px solid #f0ede8;flex-wrap:wrap}
+.tier-legend{display:flex;gap:20px;margin-top:16px;padding-top:14px;border-top:1px solid #f0ede8;flex-wrap:wrap}
 .tleg{display:flex;align-items:center;gap:6px;font-size:10px;color:#999}
 .tleg-badge{font-size:8px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.03em}
 
@@ -119,16 +116,13 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#11
   </div>
 </div>
 
-<div class="bars-section">
-  <div class="bars-title">2026 Campaign Overview</div>
-  <div class="bars-outer">
-    <div class="bars-mo-row" id="barsMoRow"></div>
-    <div id="barsRows"></div>
-  </div>
+<div class="overview">
+  <div class="overview-title">2026 Campaign Overview</div>
+  <div id="overviewRows"></div>
   <div class="tier-legend">
-    <div class="tleg"><span class="tleg-badge" style="background:rgba(180,64,0,.12);color:#a03800">T1</span>1,500+ transactions / $150k+ revenue</div>
-    <div class="tleg"><span class="tleg-badge" style="background:rgba(0,109,153,.12);color:#005580">T2</span>250+ transactions / $25k+ revenue</div>
-    <div class="tleg"><span class="tleg-badge" style="background:rgba(91,53,196,.12);color:#3d25a0">T3</span>&lt;250 transactions</div>
+    <div class="tleg"><span class="tleg-badge" style="background:rgba(180,64,0,.12);color:#a03800">T1</span>1,500+ transactions / $150k+ revenue · 9 weeks lead time</div>
+    <div class="tleg"><span class="tleg-badge" style="background:rgba(0,109,153,.12);color:#005580">T2</span>250+ transactions / $25k+ revenue · 4 weeks lead time</div>
+    <div class="tleg"><span class="tleg-badge" style="background:rgba(91,53,196,.12);color:#3d25a0">T3</span>&lt;250 transactions · 2 weeks lead time</div>
   </div>
 </div>
 
@@ -217,10 +211,21 @@ var COLORS=[
   {n:'red',    dot:'#be2828',bg:'rgba(190,40,40,.1)',   txt:'#921e1e'},
 ];
 
+// Phase definitions per tier
+// weeksOut = weeks before launch
 var TIER_PHASES={
-  1:[{label:'Brief',weeksOut:9},{label:'Design',weeksOut:8},{label:'Creative',weeksOut:7},{label:'Tease',weeksOut:1.5}],
-  2:[{label:'Brief',weeksOut:4},{label:'Design',weeksOut:3},{label:'Creative',weeksOut:2}],
-  3:[{label:'Brief',weeksOut:2},{label:'Creative',weeksOut:1}],
+  1:[
+    {label:'Plan / Creative Concept', weeksOut:9},
+    {label:'Prepare Deliverables',    weeksOut:6},
+    {label:'Tease',                   weeksOut:1.5},
+  ],
+  2:[
+    {label:'Plan / Creative Concept', weeksOut:4},
+    {label:'Prepare Deliverables',    weeksOut:2},
+  ],
+  3:[
+    {label:'Plan / Creative Concept', weeksOut:2},
+  ],
 };
 
 var camps=[
@@ -247,14 +252,15 @@ var evs=[
   {id:'e010',title:'Filmmaker Event — Nashville',date:'2026-10-01',campaign:'filmmaker',isLaunch:true,isMilestone:true,audience:'Filmmakers',notes:'October, exact date TBD'},
 ];
 
-try{var sc=localStorage.getItem('aud_camps_v5');var se=localStorage.getItem('aud_evs_v5');if(sc)camps=JSON.parse(sc);if(se)evs=JSON.parse(se);}catch(e){}
+try{var sc=localStorage.getItem('aud_camps_v6');var se=localStorage.getItem('aud_evs_v6');if(sc)camps=JSON.parse(sc);if(se)evs=JSON.parse(se);}catch(e){}
 
 var yr=2026,mo=4,view='month';
 var editId=null,editCampId=null,selCamp=null,selColor='green',dragId=null;
 
-function save(){try{localStorage.setItem('aud_camps_v5',JSON.stringify(camps));localStorage.setItem('aud_evs_v5',JSON.stringify(evs));}catch(e){}}
+function save(){try{localStorage.setItem('aud_camps_v6',JSON.stringify(camps));localStorage.setItem('aud_evs_v6',JSON.stringify(evs));}catch(e){}}
 function fmt(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
-function addDays(ds,days){var d=new Date(ds+'T00:00:00');d.setDate(d.getDate()+days);return fmt(d);}
+function addDays(ds,days){var d=new Date(ds+'T00:00:00');d.setDate(d.getDate()+days);return d;}
+function fmtShort(d){return d.toLocaleString('default',{month:'short',day:'numeric'});}
 function getCamp(id){return camps.find(function(c){return c.id===id;});}
 function getCol(n){return COLORS.find(function(c){return c.n===n;})||COLORS[0];}
 function campDot(id){var c=getCamp(id);return c?getCol(c.color).dot:'#888';}
@@ -264,111 +270,63 @@ function icon(ev){return ev.isLaunch?'🚀 ':ev.isMilestone?'🎯 ':'';}
 function tierBadgeStyle(t){if(t==1)return 'background:rgba(180,64,0,.12);color:#a03800';if(t==2)return 'background:rgba(0,109,153,.12);color:#005580';if(t==3)return 'background:rgba(91,53,196,.12);color:#3d25a0';return 'background:#f0ede8;color:#999';}
 function tierLabel(t){return t>0?'T'+t:'';}
 
-function renderBars(){
-  var moRow=document.getElementById('barsMoRow');
-  var rows=document.getElementById('barsRows');
-  moRow.innerHTML='';rows.innerHTML='';
-
-  var MOS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var startY=new Date(2026,0,1).getTime();
-  var endY=new Date(2026,11,31,23,59).getTime();
-  var span=endY-startY;
-
-  function pct(ds){if(!ds)return null;return((new Date(ds+'T00:00:00').getTime()-startY)/span*100);}
-
-  MOS.forEach(function(m){
-    var el=document.createElement('div');el.className='bars-mo';el.textContent=m;moRow.appendChild(el);
-  });
-
-  var todayPct=pct(fmt(new Date()));
-
+function renderOverview(){
+  var el=document.getElementById('overviewRows');el.innerHTML='';
   camps.filter(function(c){return c.tier>0;}).forEach(function(camp){
     var col=getCol(camp.color);
-    var row=document.createElement('div');row.className='bar-row';
+    var row=document.createElement('div');row.className='camp-row';
 
-    // Label
-    var lbl=document.createElement('div');lbl.className='bar-label';
-    lbl.title='Click to edit';
-    lbl.innerHTML='<span class="bar-label-name">'+camp.name+'</span>'+(tierLabel(camp.tier)?'<span class="tier-badge" style="'+tierBadgeStyle(camp.tier)+'">'+tierLabel(camp.tier)+'</span>':'');
-    lbl.onclick=function(){openCampEdit(camp.id);};
-    row.appendChild(lbl);
+    // Name + badge
+    var nameEl=document.createElement('div');nameEl.className='camp-name';
+    nameEl.style.color=col.txt;
+    nameEl.innerHTML='<span>'+camp.name+'</span>'+(tierLabel(camp.tier)?'<span class="tier-badge" style="'+tierBadgeStyle(camp.tier)+'">'+tierLabel(camp.tier)+'</span>':'');
+    nameEl.onclick=function(){openCampEdit(camp.id);};
+    row.appendChild(nameEl);
 
-    // Track
-    var track=document.createElement('div');track.className='bar-track';
-
-    // Today line
-    if(todayPct>=0&&todayPct<=100){
-      var tl=document.createElement('div');tl.className='bar-today';tl.style.left=todayPct+'%';track.appendChild(tl);
-    }
+    // Phases
+    var phases=document.createElement('div');phases.className='camp-phases';
 
     if(!camp.launch){
-      var tbd=document.createElement('div');tbd.className='bar-tbd';tbd.textContent='TBD';track.appendChild(tbd);
+      var tbd=document.createElement('span');tbd.className='camp-tbd';tbd.textContent='Launch date TBD';
+      phases.appendChild(tbd);
     } else {
-      var lp=pct(camp.launch);
-      var phases=TIER_PHASES[camp.tier]||[];
+      var launchDate=new Date(camp.launch+'T00:00:00');
+      var tierPhases=TIER_PHASES[camp.tier]||[];
 
-      if(phases.length){
-        // Earliest phase start
-        var earliest=phases[phases.length-1];
-        var earliestDate=addDays(camp.launch,-Math.round(earliest.weeksOut*7));
-        var ep=Math.max(0,pct(earliestDate));
+      tierPhases.forEach(function(phase,i){
+        var phaseDate=addDays(camp.launch,-Math.round(phase.weeksOut*7));
+        var phaseEl=document.createElement('div');phaseEl.className='phase';
 
-        // Shaded fill bar
-        var fill=document.createElement('div');
-        fill.className='bar-fill';
-        fill.style.left=ep+'%';
-        fill.style.width=(lp-ep)+'%';
-        fill.style.background=col.dot;
-        track.appendChild(fill);
+        var lbl=document.createElement('span');lbl.className='phase-label';lbl.textContent=phase.label;
+        var dt=document.createElement('span');dt.className='phase-date';dt.style.color=col.txt;dt.textContent=fmtShort(phaseDate);
 
-        // Phase markers — only show if they fit with enough gap
-        var lastPct=-99;
-        phases.forEach(function(phase){
-          var pd=addDays(camp.launch,-Math.round(phase.weeksOut*7));
-          var pp=pct(pd);
-          if(pp<0||pp>100)return;
-          // Only show if at least 6% away from last marker to avoid crowding
-          if(pp-lastPct<6)return;
-          lastPct=pp;
+        phaseEl.appendChild(lbl);
+        phaseEl.appendChild(document.createTextNode(' '));
+        phaseEl.appendChild(dt);
 
-          var marker=document.createElement('div');
-          marker.className='bar-phase-marker';
-          marker.style.left=pp+'%';
+        var arrow=document.createElement('span');arrow.className='phase-arrow';arrow.textContent='→';
+        phases.appendChild(phaseEl);
+        phases.appendChild(arrow);
+      });
 
-          var tick=document.createElement('div');
-          tick.className='bar-phase-tick';
-          tick.style.background=col.dot;
-
-          var label=document.createElement('div');
-          label.className='bar-phase-label';
-          label.style.color=col.txt;
-          label.textContent=phase.label;
-
-          marker.appendChild(tick);
-          marker.appendChild(label);
-          track.appendChild(marker);
-        });
-      }
-
-      // Launch rocket
-      if(lp>=0&&lp<=100){
-        var launch=document.createElement('div');
-        launch.className='bar-launch';
-        launch.style.left=lp+'%';
-        launch.textContent='🚀';
-        launch.title=camp.name+' launch';
-        track.appendChild(launch);
-      }
+      // Launch
+      var launchEl=document.createElement('div');launchEl.className='phase phase-launch';
+      var launchLbl=document.createElement('span');launchLbl.className='phase-label';launchLbl.textContent='Launch';
+      var launchDt=document.createElement('span');launchDt.className='phase-date';launchDt.textContent='🚀 '+fmtShort(launchDate);
+      launchEl.appendChild(launchLbl);
+      launchEl.appendChild(document.createTextNode(' '));
+      launchEl.appendChild(launchDt);
+      phases.appendChild(launchEl);
     }
 
-    row.appendChild(track);
-    rows.appendChild(row);
+    row.appendChild(phases);
+    el.appendChild(row);
   });
 }
 
 function render(){
   document.getElementById('navMo').textContent=new Date(yr,mo).toLocaleString('default',{month:'long',year:'numeric'});
-  renderBars();
+  renderOverview();
   if(view==='month')renderMonth();else renderList();
 }
 
