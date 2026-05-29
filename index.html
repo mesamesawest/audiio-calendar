@@ -8,7 +8,6 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#111;font-size:13px}
 
-/* HEADER */
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:#fff;border-bottom:1px solid #e2ddd7;position:sticky;top:0;z-index:50;flex-wrap:wrap;gap:8px}
 .hdr-l{display:flex;align-items:center;gap:10px}
 .hdr-title{font-size:14px;font-weight:700;letter-spacing:-.01em}
@@ -20,29 +19,27 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#11
 .btn-dark:hover{opacity:.85}
 
 /* CAMPAIGN BARS */
-.bars-section{background:#fff;border-bottom:1px solid #e2ddd7;padding:16px 24px 20px}
-.bars-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.bars-title{font-size:10px;font-weight:700;color:#bbb;letter-spacing:.08em;text-transform:uppercase}
-.bars-year{font-size:10px;color:#ccc;font-weight:600}
-
+.bars-section{background:#fff;border-bottom:1px solid #e2ddd7;padding:20px 24px 18px}
+.bars-title{font-size:10px;font-weight:700;color:#bbb;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
 .bars-outer{position:relative}
-.bars-mo-row{display:flex;margin-bottom:8px;padding-left:120px}
-.bars-mo{flex:1;font-size:9px;color:#ccc;font-weight:600;letter-spacing:.04em;text-align:left;padding-left:2px}
-.bar-row{display:flex;align-items:center;margin-bottom:7px;position:relative}
-.bar-label{width:120px;flex-shrink:0;padding-right:10px;display:flex;align-items:center;gap:5px}
-.bar-label-name{font-size:11px;font-weight:600;color:#444;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:80px}
-.tier-badge{font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px;flex-shrink:0;letter-spacing:.03em}
-.bar-track{flex:1;height:20px;position:relative;border-radius:3px;background:#f7f6f3}
-.bar-fill{position:absolute;height:100%;border-radius:3px;opacity:.15;top:0}
-.bar-phase{position:absolute;top:50%;transform:translateY(-50%);font-size:8px;font-weight:700;white-space:nowrap;letter-spacing:.03em;opacity:.8}
-.bar-launch{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:13px;z-index:2;cursor:default}
-.bar-tdb{font-size:10px;font-weight:600;color:#ccc;padding:0 8px;line-height:20px}
-.bar-today{position:absolute;top:0;bottom:0;width:1px;background:#bbb;opacity:.5;z-index:1}
-.bar-row:hover .bar-label-name{color:#111}
+.bars-mo-row{display:flex;margin-bottom:6px;padding-left:160px}
+.bars-mo{flex:1;font-size:9px;color:#ccc;font-weight:600;letter-spacing:.04em;text-align:left}
+.bar-row{display:flex;align-items:center;margin-bottom:10px}
+.bar-label{width:160px;flex-shrink:0;padding-right:14px;display:flex;align-items:center;gap:6px;cursor:pointer}
+.bar-label:hover .bar-label-name{color:#111}
+.bar-label-name{font-size:11px;font-weight:600;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:110px}
+.tier-badge{font-size:8px;font-weight:700;padding:2px 5px;border-radius:3px;flex-shrink:0;letter-spacing:.03em}
+.bar-track{flex:1;height:24px;position:relative;background:#f7f6f3;border-radius:4px;overflow:visible}
+.bar-fill{position:absolute;height:100%;border-radius:4px;top:0;opacity:.12}
+.bar-phase-marker{position:absolute;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;z-index:2}
+.bar-phase-tick{width:1px;height:8px;opacity:.4;margin-top:8px}
+.bar-phase-label{font-size:8px;font-weight:700;white-space:nowrap;margin-top:2px;opacity:.75;letter-spacing:.02em}
+.bar-launch{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:14px;z-index:3;cursor:default;line-height:1}
+.bar-tbd{font-size:10px;font-weight:600;color:#ccc;padding:0 10px;line-height:24px}
+.bar-today{position:absolute;top:-4px;bottom:-4px;width:1px;background:#111;opacity:.12;z-index:1}
 
-/* TIER LEGEND */
-.tier-legend{display:flex;gap:16px;margin-top:12px;padding-top:12px;border-top:1px solid #f0ede8}
-.tleg{display:flex;align-items:center;gap:5px;font-size:10px;color:#999}
+.tier-legend{display:flex;gap:20px;margin-top:14px;padding-top:12px;border-top:1px solid #f0ede8;flex-wrap:wrap}
+.tleg{display:flex;align-items:center;gap:6px;font-size:10px;color:#999}
 .tleg-badge{font-size:8px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.03em}
 
 /* NAV */
@@ -123,18 +120,15 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#11
 </div>
 
 <div class="bars-section">
-  <div class="bars-header">
-    <div class="bars-title">2026 Campaign Overview</div>
-    <div class="bars-year">Jan → Dec</div>
-  </div>
+  <div class="bars-title">2026 Campaign Overview</div>
   <div class="bars-outer">
     <div class="bars-mo-row" id="barsMoRow"></div>
     <div id="barsRows"></div>
   </div>
   <div class="tier-legend">
-    <div class="tleg"><span class="tleg-badge" style="background:rgba(180,64,0,.12);color:#a03800">T1</span> 1,500+ transactions / $150k+ revenue</div>
-    <div class="tleg"><span class="tleg-badge" style="background:rgba(0,109,153,.12);color:#005580">T2</span> 250+ transactions / $25k+ revenue</div>
-    <div class="tleg"><span class="tleg-badge" style="background:rgba(91,53,196,.12);color:#3d25a0">T3</span> &lt;250 transactions</div>
+    <div class="tleg"><span class="tleg-badge" style="background:rgba(180,64,0,.12);color:#a03800">T1</span>1,500+ transactions / $150k+ revenue</div>
+    <div class="tleg"><span class="tleg-badge" style="background:rgba(0,109,153,.12);color:#005580">T2</span>250+ transactions / $25k+ revenue</div>
+    <div class="tleg"><span class="tleg-badge" style="background:rgba(91,53,196,.12);color:#3d25a0">T3</span>&lt;250 transactions</div>
   </div>
 </div>
 
@@ -194,7 +188,7 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#11
         <select id="cTier">
           <option value="1">Tier 1 — $150k+ / 1,500+ tx</option>
           <option value="2">Tier 2 — $25k+ / 250+ tx</option>
-          <option value="3">Tier 3 — &lt;$25k / &lt;250 tx</option>
+          <option value="3">Tier 3 — &lt;$25k</option>
           <option value="0">Internal / No tier</option>
         </select>
       </div>
@@ -212,204 +206,157 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f6f3;color:#11
 </div>
 
 <script>
-var COLORS = [
-  {n:'green',  dot:'#4a7c00', bg:'rgba(74,124,0,.1)',   txt:'#3a6800'},
-  {n:'blue',   dot:'#006d99', bg:'rgba(0,109,153,.1)',   txt:'#005580'},
-  {n:'orange', dot:'#b84000', bg:'rgba(184,64,0,.1)',    txt:'#8a3000'},
-  {n:'purple', dot:'#5b35c4', bg:'rgba(91,53,196,.1)',   txt:'#3d25a0'},
-  {n:'teal',   dot:'#008c82', bg:'rgba(0,140,130,.1)',   txt:'#006b63'},
-  {n:'pink',   dot:'#b42864', bg:'rgba(180,40,100,.1)',  txt:'#8a1f4e'},
-  {n:'amber',  dot:'#b47800', bg:'rgba(180,120,0,.1)',   txt:'#8a5c00'},
-  {n:'red',    dot:'#be2828', bg:'rgba(190,40,40,.1)',   txt:'#921e1e'},
+var COLORS=[
+  {n:'green',  dot:'#4a7c00',bg:'rgba(74,124,0,.1)',   txt:'#3a6800'},
+  {n:'blue',   dot:'#006d99',bg:'rgba(0,109,153,.1)',   txt:'#005580'},
+  {n:'orange', dot:'#b84000',bg:'rgba(184,64,0,.1)',    txt:'#8a3000'},
+  {n:'purple', dot:'#5b35c4',bg:'rgba(91,53,196,.1)',   txt:'#3d25a0'},
+  {n:'teal',   dot:'#008c82',bg:'rgba(0,140,130,.1)',   txt:'#006b63'},
+  {n:'pink',   dot:'#b42864',bg:'rgba(180,40,100,.1)',  txt:'#8a1f4e'},
+  {n:'amber',  dot:'#b47800',bg:'rgba(180,120,0,.1)',   txt:'#8a5c00'},
+  {n:'red',    dot:'#be2828',bg:'rgba(190,40,40,.1)',   txt:'#921e1e'},
 ];
 
-var TIER_PHASES = {
-  1: [
-    {label:'Brief',    weeksOut:9},
-    {label:'Design',   weeksOut:8},
-    {label:'Creative', weeksOut:7},
-    {label:'Tease',    weeksOut:1.5},
-  ],
-  2: [
-    {label:'Brief',    weeksOut:4},
-    {label:'Design',   weeksOut:3},
-    {label:'Creative', weeksOut:2},
-  ],
-  3: [
-    {label:'Brief',    weeksOut:2},
-    {label:'Creative', weeksOut:1},
-  ],
+var TIER_PHASES={
+  1:[{label:'Brief',weeksOut:9},{label:'Design',weeksOut:8},{label:'Creative',weeksOut:7},{label:'Tease',weeksOut:1.5}],
+  2:[{label:'Brief',weeksOut:4},{label:'Design',weeksOut:3},{label:'Creative',weeksOut:2}],
+  3:[{label:'Brief',weeksOut:2},{label:'Creative',weeksOut:1}],
 };
 
-var camps = [
+var camps=[
   {id:'hans',      name:'Hans 2',             color:'green',  tier:1, launch:'2026-06-01'},
-  {id:'adobe',     name:'Adobe / Plugin',      color:'blue',   tier:2, launch:'2026-06-22'},
-  {id:'taste',     name:'Taste',               color:'amber',  tier:3, launch:'2026-07-01'},
-  {id:'sfx',       name:'Lifetime SFX',        color:'orange', tier:1, launch:null},
+  {id:'sfx',       name:'Lifetime SFX',        color:'orange', tier:1, launch:'2026-06-22'},
+  {id:'adobe',     name:'Adobe / Plugin',      color:'blue',   tier:2, launch:'2026-07-01'},
+  {id:'taste',     name:'Taste',               color:'amber',  tier:3, launch:'2026-07-15'},
   {id:'elements',  name:'Lifetime Elements',   color:'teal',   tier:1, launch:null},
   {id:'ai',        name:'Lifetime AI Credits', color:'purple', tier:1, launch:'2026-09-01'},
   {id:'filmmaker', name:'Filmmaker Nashville', color:'pink',   tier:2, launch:'2026-10-01'},
   {id:'internal',  name:'Internal',            color:'red',    tier:0, launch:null},
 ];
 
-var evs = [
-  {id:'e001',title:'Hans 2 kick-off meeting',date:'2026-04-29',campaign:'internal',isLaunch:false,isMilestone:true,audience:'Internal',notes:'Campaign creative kick-off'},
-  {id:'e002',title:'Hans 2 — send briefs to partners',date:'2026-05-01',campaign:'hans',isLaunch:false,isMilestone:false,audience:'Partners',notes:'2 sent — more to follow'},
+var evs=[
+  {id:'e001',title:'Hans 2 kick-off',date:'2026-04-29',campaign:'internal',isLaunch:false,isMilestone:true,audience:'Internal',notes:'Campaign creative kick-off'},
+  {id:'e002',title:'Hans 2 — partner briefs sent',date:'2026-05-01',campaign:'hans',isLaunch:false,isMilestone:false,audience:'Partners',notes:'2 sent — more to follow'},
   {id:'e003',title:'Hans 2 creative due',date:'2026-05-08',campaign:'hans',isLaunch:false,isMilestone:true,audience:'Internal',notes:'Phase 1 assets due from Kate'},
   {id:'e004',title:'Hans 2 video shoot',date:'2026-05-20',campaign:'hans',isLaunch:false,isMilestone:true,audience:'Internal',notes:'Hero concept shoot'},
-  {id:'e005',title:'Hans 2.0 full launch',date:'2026-06-01',campaign:'hans',isLaunch:true,isMilestone:true,audience:'Pro/Pro+',notes:'All channels live'},
-  {id:'e006',title:'Adobe / Plugin launch',date:'2026-06-22',campaign:'adobe',isLaunch:true,isMilestone:true,audience:'Existing Pro+',notes:''},
-  {id:'e007',title:'Taste launch',date:'2026-07-01',campaign:'taste',isLaunch:true,isMilestone:true,audience:'All users',notes:'Blog + email mix'},
-  {id:'e008',title:'Lifetime AI Credits launch',date:'2026-09-01',campaign:'ai',isLaunch:true,isMilestone:true,audience:'TBD',notes:'Early fall'},
-  {id:'e009',title:'Filmmaker Event — Nashville',date:'2026-10-01',campaign:'filmmaker',isLaunch:true,isMilestone:true,audience:'Filmmakers',notes:'October, exact date TBD'},
+  {id:'e005',title:'Hans 2.0 launch',date:'2026-06-01',campaign:'hans',isLaunch:true,isMilestone:true,audience:'Pro/Pro+',notes:'All channels live'},
+  {id:'e006',title:'Lifetime SFX launch',date:'2026-06-22',campaign:'sfx',isLaunch:true,isMilestone:true,audience:'TBD',notes:''},
+  {id:'e007',title:'Adobe / Plugin launch',date:'2026-07-01',campaign:'adobe',isLaunch:true,isMilestone:true,audience:'Existing Pro+',notes:''},
+  {id:'e008',title:'Taste launch',date:'2026-07-15',campaign:'taste',isLaunch:true,isMilestone:true,audience:'All users',notes:'Blog + email mix'},
+  {id:'e009',title:'Lifetime AI Credits launch',date:'2026-09-01',campaign:'ai',isLaunch:true,isMilestone:true,audience:'TBD',notes:'Early fall'},
+  {id:'e010',title:'Filmmaker Event — Nashville',date:'2026-10-01',campaign:'filmmaker',isLaunch:true,isMilestone:true,audience:'Filmmakers',notes:'October, exact date TBD'},
 ];
 
-try {
-  var sc = localStorage.getItem('aud_camps_v4');
-  var se = localStorage.getItem('aud_evs_v4');
-  if (sc) camps = JSON.parse(sc);
-  if (se) evs   = JSON.parse(se);
-} catch(e) {}
+try{var sc=localStorage.getItem('aud_camps_v5');var se=localStorage.getItem('aud_evs_v5');if(sc)camps=JSON.parse(sc);if(se)evs=JSON.parse(se);}catch(e){}
 
-var yr = 2026, mo = 4, view = 'month';
-var editId = null, editCampId = null, selCamp = null, selColor = 'green', dragId = null;
+var yr=2026,mo=4,view='month';
+var editId=null,editCampId=null,selCamp=null,selColor='green',dragId=null;
 
-function save() {
-  try {
-    localStorage.setItem('aud_camps_v4', JSON.stringify(camps));
-    localStorage.setItem('aud_evs_v4',   JSON.stringify(evs));
-  } catch(e) {}
-}
+function save(){try{localStorage.setItem('aud_camps_v5',JSON.stringify(camps));localStorage.setItem('aud_evs_v5',JSON.stringify(evs));}catch(e){}}
+function fmt(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function addDays(ds,days){var d=new Date(ds+'T00:00:00');d.setDate(d.getDate()+days);return fmt(d);}
+function getCamp(id){return camps.find(function(c){return c.id===id;});}
+function getCol(n){return COLORS.find(function(c){return c.n===n;})||COLORS[0];}
+function campDot(id){var c=getCamp(id);return c?getCol(c.color).dot:'#888';}
+function campBg(id){var c=getCamp(id);return c?getCol(c.color).bg:'rgba(0,0,0,.05)';}
+function campTxt(id){var c=getCamp(id);return c?getCol(c.color).txt:'#444';}
+function icon(ev){return ev.isLaunch?'🚀 ':ev.isMilestone?'🎯 ':'';}
+function tierBadgeStyle(t){if(t==1)return 'background:rgba(180,64,0,.12);color:#a03800';if(t==2)return 'background:rgba(0,109,153,.12);color:#005580';if(t==3)return 'background:rgba(91,53,196,.12);color:#3d25a0';return 'background:#f0ede8;color:#999';}
+function tierLabel(t){return t>0?'T'+t:'';}
 
-function fmt(d) {
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-}
-function addDays(dateStr, days) {
-  var d = new Date(dateStr+'T00:00:00');
-  d.setDate(d.getDate() + days);
-  return fmt(d);
-}
-function getCamp(id)  { return camps.find(function(c){return c.id===id}); }
-function getCol(n)    { return COLORS.find(function(c){return c.n===n})||COLORS[0]; }
-function campDot(id)  { var c=getCamp(id); return c?getCol(c.color).dot:'#888'; }
-function campBg(id)   { var c=getCamp(id); return c?getCol(c.color).bg:'rgba(0,0,0,.05)'; }
-function campTxt(id)  { var c=getCamp(id); return c?getCol(c.color).txt:'#444'; }
-function icon(ev)     { return ev.isLaunch?'🚀 ':ev.isMilestone?'🎯 ':''; }
+function renderBars(){
+  var moRow=document.getElementById('barsMoRow');
+  var rows=document.getElementById('barsRows');
+  moRow.innerHTML='';rows.innerHTML='';
 
-function tierBadgeStyle(tier) {
-  if (tier==1) return 'background:rgba(180,64,0,.12);color:#a03800';
-  if (tier==2) return 'background:rgba(0,109,153,.12);color:#005580';
-  if (tier==3) return 'background:rgba(91,53,196,.12);color:#3d25a0';
-  return 'background:#f0ede8;color:#999';
-}
-function tierLabel(tier) {
-  if (tier==1) return 'T1';
-  if (tier==2) return 'T2';
-  if (tier==3) return 'T3';
-  return '';
-}
+  var MOS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var startY=new Date(2026,0,1).getTime();
+  var endY=new Date(2026,11,31,23,59).getTime();
+  var span=endY-startY;
 
-/* ---- CAMPAIGN BARS ---- */
-function renderBars() {
-  var moRow = document.getElementById('barsMoRow');
-  var rows  = document.getElementById('barsRows');
-  moRow.innerHTML = ''; rows.innerHTML = '';
+  function pct(ds){if(!ds)return null;return((new Date(ds+'T00:00:00').getTime()-startY)/span*100);}
 
-  var MOS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var startY = new Date(2026,0,1).getTime();
-  var endY   = new Date(2026,11,31,23,59).getTime();
-  var span   = endY - startY;
-
-  function pct(dateStr) {
-    if (!dateStr) return null;
-    return ((new Date(dateStr+'T00:00:00').getTime()-startY)/span*100);
-  }
-
-  // Month header
-  MOS.forEach(function(m,i){
-    var el = document.createElement('div');
-    el.className = 'bars-mo';
-    el.textContent = m;
-    moRow.appendChild(el);
+  MOS.forEach(function(m){
+    var el=document.createElement('div');el.className='bars-mo';el.textContent=m;moRow.appendChild(el);
   });
 
-  // Today pct
-  var todayPct = pct(fmt(new Date()));
+  var todayPct=pct(fmt(new Date()));
 
-  // One row per non-internal campaign
-  camps.filter(function(c){return c.tier > 0}).forEach(function(camp) {
-    var col = getCol(camp.color);
-    var row = document.createElement('div');
-    row.className = 'bar-row';
+  camps.filter(function(c){return c.tier>0;}).forEach(function(camp){
+    var col=getCol(camp.color);
+    var row=document.createElement('div');row.className='bar-row';
 
     // Label
-    var lbl = document.createElement('div');
-    lbl.className = 'bar-label';
-    var tl = tierLabel(camp.tier);
-    lbl.innerHTML =
-      '<span class="bar-label-name" title="'+camp.name+'">'+camp.name+'</span>' +
-      (tl ? '<span class="tier-badge" style="'+tierBadgeStyle(camp.tier)+'">'+tl+'</span>' : '');
-    lbl.style.cursor = 'pointer';
-    lbl.onclick = function(){ openCampEdit(camp.id); };
+    var lbl=document.createElement('div');lbl.className='bar-label';
+    lbl.title='Click to edit';
+    lbl.innerHTML='<span class="bar-label-name">'+camp.name+'</span>'+(tierLabel(camp.tier)?'<span class="tier-badge" style="'+tierBadgeStyle(camp.tier)+'">'+tierLabel(camp.tier)+'</span>':'');
+    lbl.onclick=function(){openCampEdit(camp.id);};
     row.appendChild(lbl);
 
     // Track
-    var track = document.createElement('div');
-    track.className = 'bar-track';
+    var track=document.createElement('div');track.className='bar-track';
 
     // Today line
-    if (todayPct >= 0 && todayPct <= 100) {
-      var tl2 = document.createElement('div');
-      tl2.className = 'bar-today';
-      tl2.style.left = todayPct + '%';
-      track.appendChild(tl2);
+    if(todayPct>=0&&todayPct<=100){
+      var tl=document.createElement('div');tl.className='bar-today';tl.style.left=todayPct+'%';track.appendChild(tl);
     }
 
-    if (!camp.launch) {
-      // TBD
-      var tbd = document.createElement('div');
-      tbd.className = 'bar-tdb';
-      tbd.textContent = 'TBD';
-      track.appendChild(tbd);
+    if(!camp.launch){
+      var tbd=document.createElement('div');tbd.className='bar-tbd';tbd.textContent='TBD';track.appendChild(tbd);
     } else {
-      var lp = pct(camp.launch);
-      var phases = TIER_PHASES[camp.tier] || [];
+      var lp=pct(camp.launch);
+      var phases=TIER_PHASES[camp.tier]||[];
 
-      if (phases.length) {
-        // Find earliest phase
-        var earliestPhase = phases[phases.length-1];
-        var earliestDate  = addDays(camp.launch, -Math.round(earliestPhase.weeksOut * 7));
-        var ep = pct(earliestDate);
+      if(phases.length){
+        // Earliest phase start
+        var earliest=phases[phases.length-1];
+        var earliestDate=addDays(camp.launch,-Math.round(earliest.weeksOut*7));
+        var ep=Math.max(0,pct(earliestDate));
 
-        // Bar fill from earliest phase to launch
-        var fill = document.createElement('div');
-        fill.className = 'bar-fill';
-        fill.style.left  = Math.max(0,ep) + '%';
-        fill.style.width = (lp - Math.max(0,ep)) + '%';
-        fill.style.background = col.dot;
+        // Shaded fill bar
+        var fill=document.createElement('div');
+        fill.className='bar-fill';
+        fill.style.left=ep+'%';
+        fill.style.width=(lp-ep)+'%';
+        fill.style.background=col.dot;
         track.appendChild(fill);
 
-        // Phase markers
-        phases.forEach(function(phase) {
-          var phaseDate = addDays(camp.launch, -Math.round(phase.weeksOut * 7));
-          var pp = pct(phaseDate);
-          if (pp < 0 || pp > 100) return;
-          var marker = document.createElement('div');
-          marker.className = 'bar-phase';
-          marker.style.left  = pp + '%';
-          marker.style.color = col.txt;
-          marker.textContent = phase.label;
+        // Phase markers — only show if they fit with enough gap
+        var lastPct=-99;
+        phases.forEach(function(phase){
+          var pd=addDays(camp.launch,-Math.round(phase.weeksOut*7));
+          var pp=pct(pd);
+          if(pp<0||pp>100)return;
+          // Only show if at least 6% away from last marker to avoid crowding
+          if(pp-lastPct<6)return;
+          lastPct=pp;
+
+          var marker=document.createElement('div');
+          marker.className='bar-phase-marker';
+          marker.style.left=pp+'%';
+
+          var tick=document.createElement('div');
+          tick.className='bar-phase-tick';
+          tick.style.background=col.dot;
+
+          var label=document.createElement('div');
+          label.className='bar-phase-label';
+          label.style.color=col.txt;
+          label.textContent=phase.label;
+
+          marker.appendChild(tick);
+          marker.appendChild(label);
           track.appendChild(marker);
         });
       }
 
-      // Launch marker
-      if (lp >= 0 && lp <= 100) {
-        var launch = document.createElement('div');
-        launch.className = 'bar-launch';
-        launch.style.left = lp + '%';
-        launch.textContent = '🚀';
-        launch.title = camp.name + ' launch: ' + camp.launch;
+      // Launch rocket
+      if(lp>=0&&lp<=100){
+        var launch=document.createElement('div');
+        launch.className='bar-launch';
+        launch.style.left=lp+'%';
+        launch.textContent='🚀';
+        launch.title=camp.name+' launch';
         track.appendChild(launch);
       }
     }
@@ -419,45 +366,39 @@ function renderBars() {
   });
 }
 
-/* ---- CALENDAR ---- */
-function render() {
-  document.getElementById('navMo').textContent = new Date(yr,mo).toLocaleString('default',{month:'long',year:'numeric'});
+function render(){
+  document.getElementById('navMo').textContent=new Date(yr,mo).toLocaleString('default',{month:'long',year:'numeric'});
   renderBars();
-  if (view==='month') renderMonth(); else renderList();
+  if(view==='month')renderMonth();else renderList();
 }
 
-function renderMonth() {
-  document.getElementById('cal').style.display = 'block';
-  document.getElementById('lv').style.display  = 'none';
-  var dh = document.getElementById('dayHdrs'); dh.innerHTML = '';
-  ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(function(d){
-    var h=document.createElement('div');h.className='day-hdr';h.textContent=d;dh.appendChild(h);
-  });
-  var grid  = document.getElementById('grid'); grid.innerHTML='';
-  var first = new Date(yr,mo,1).getDay();
-  var dim   = new Date(yr,mo+1,0).getDate();
-  var dipm  = new Date(yr,mo,0).getDate();
-  var today = new Date(); today.setHours(0,0,0,0);
-  var cells = [];
-  for (var i=first-1;i>=0;i--) cells.push({d:dipm-i,o:true});
-  for (var d=1;d<=dim;d++)     cells.push({d:d,o:false});
-  while (cells.length%7)       cells.push({d:cells.length-dim-first+1,o:true});
-
+function renderMonth(){
+  document.getElementById('cal').style.display='block';
+  document.getElementById('lv').style.display='none';
+  var dh=document.getElementById('dayHdrs');dh.innerHTML='';
+  ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(function(d){var h=document.createElement('div');h.className='day-hdr';h.textContent=d;dh.appendChild(h);});
+  var grid=document.getElementById('grid');grid.innerHTML='';
+  var first=new Date(yr,mo,1).getDay();
+  var dim=new Date(yr,mo+1,0).getDate();
+  var dipm=new Date(yr,mo,0).getDate();
+  var today=new Date();today.setHours(0,0,0,0);
+  var cells=[];
+  for(var i=first-1;i>=0;i--)cells.push({d:dipm-i,o:true});
+  for(var d=1;d<=dim;d++)cells.push({d:d,o:false});
+  while(cells.length%7)cells.push({d:cells.length-dim-first+1,o:true});
   cells.forEach(function(c){
-    var cell=document.createElement('div');
-    cell.className='cell'+(c.o?' other':'');
+    var cell=document.createElement('div');cell.className='cell'+(c.o?' other':'');
     var cm=c.o&&c.d>15?mo-1:c.o?mo+1:mo;
     var dt=new Date(yr,cm,c.d);dt.setHours(0,0,0,0);
-    if(dt.getTime()===today.getTime()) cell.classList.add('today');
+    if(dt.getTime()===today.getTime())cell.classList.add('today');
     var ds=fmt(dt);
     cell.innerHTML='<div class="dnum">'+c.d+'</div><button class="add-btn" onclick="event.stopPropagation();openAdd(\''+ds+'\')">+</button>';
-
     evs.filter(function(e){return e.date===ds;}).forEach(function(ev){
       var el=document.createElement('div');el.className='ev';
-      el.style.background  = campBg(ev.campaign);
-      el.style.borderColor = campDot(ev.campaign);
-      el.style.color       = campTxt(ev.campaign);
-      el.textContent = icon(ev)+ev.title;
+      el.style.background=campBg(ev.campaign);
+      el.style.borderColor=campDot(ev.campaign);
+      el.style.color=campTxt(ev.campaign);
+      el.textContent=icon(ev)+ev.title;
       el.title=(ev.audience?ev.audience+'\n':'')+ev.notes;
       el.draggable=true;
       el.onclick=function(e){e.stopPropagation();openEdit(ev.id);};
@@ -465,22 +406,17 @@ function renderMonth() {
       el.ondragend=function(){el.style.opacity='1';};
       cell.appendChild(el);
     });
-
-    cell.ondragover  = function(e){e.preventDefault();cell.style.outline='2px dashed #bbb';};
-    cell.ondragleave = function(){cell.style.outline='';};
-    cell.ondrop = function(e){
+    cell.ondragover=function(e){e.preventDefault();cell.style.outline='2px dashed #bbb';};
+    cell.ondragleave=function(){cell.style.outline='';};
+    cell.ondrop=function(e){
       e.preventDefault();cell.style.outline='';
-      if(dragId){
-        var ev=evs.find(function(e){return e.id===dragId;});
-        if(ev){ev.date=ds;save();render();}
-        dragId=null;
-      }
+      if(dragId){var ev=evs.find(function(e){return e.id===dragId;});if(ev){ev.date=ds;save();render();}dragId=null;}
     };
     grid.appendChild(cell);
   });
 }
 
-function renderList() {
+function renderList(){
   document.getElementById('cal').style.display='none';
   var lv=document.getElementById('lv');lv.style.display='block';lv.innerHTML='';
   var sorted=evs.slice().sort(function(a,b){return a.date.localeCompare(b.date);});
@@ -489,29 +425,18 @@ function renderList() {
   sorted.forEach(function(ev){
     var d=new Date(ev.date+'T00:00:00');
     var mk=d.getFullYear()+'-'+d.getMonth();
-    if(mk!==lastMo){
-      lastMo=mk;
-      var mh=document.createElement('div');mh.className='lmo';
-      mh.textContent=d.toLocaleString('default',{month:'long',year:'numeric'});
-      lv.appendChild(mh);
-    }
+    if(mk!==lastMo){lastMo=mk;var mh=document.createElement('div');mh.className='lmo';mh.textContent=d.toLocaleString('default',{month:'long',year:'numeric'});lv.appendChild(mh);}
     var col=getCol((getCamp(ev.campaign)||{color:'green'}).color);
     var campName=(getCamp(ev.campaign)||{name:ev.campaign}).name;
     var ds=d.toLocaleString('default',{month:'short',day:'numeric'});
     var row=document.createElement('div');row.className='lrow';
-    row.innerHTML=
-      '<div class="ldate">'+ds+'</div>'+
-      '<div class="ldot" style="background:'+col.dot+'"></div>'+
-      '<div style="flex:1"><div class="ltitle" style="color:'+col.txt+'">'+icon(ev)+ev.title+'</div>'+
-      (ev.notes?'<div class="lnote">'+ev.notes+'</div>':'')+
-      '</div><span class="ltag" style="background:'+col.bg+';color:'+col.txt+'">'+campName+'</span>';
+    row.innerHTML='<div class="ldate">'+ds+'</div><div class="ldot" style="background:'+col.dot+'"></div><div style="flex:1"><div class="ltitle" style="color:'+col.txt+'">'+icon(ev)+ev.title+'</div>'+(ev.notes?'<div class="lnote">'+ev.notes+'</div>':'')+' </div><span class="ltag" style="background:'+col.bg+';color:'+col.txt+'">'+campName+'</span>';
     row.onclick=function(){openEdit(ev.id);};
     lv.appendChild(row);
   });
 }
 
-/* ---- EVENT MODAL ---- */
-function buildPills(sel) {
+function buildPills(sel){
   var el=document.getElementById('evPills');el.innerHTML='';
   camps.forEach(function(c){
     var col=getCol(c.color);
@@ -527,21 +452,20 @@ function buildPills(sel) {
   });
 }
 
-function openAdd(ds) {
+function openAdd(ds){
   editId=null;selCamp=camps[0]?camps[0].id:null;
   document.getElementById('evTitle').textContent='Add event';
   ['fT','fA','fN'].forEach(function(id){document.getElementById(id).value='';});
   document.getElementById('fD').value=ds||fmt(new Date());
   document.getElementById('fE').value='';
-  document.getElementById('fLa').checked=false;
-  document.getElementById('fMi').checked=false;
+  document.getElementById('fLa').checked=false;document.getElementById('fMi').checked=false;
   document.getElementById('delBtn').style.display='none';
   buildPills(selCamp);
   document.getElementById('evOv').classList.add('open');
   setTimeout(function(){document.getElementById('fT').focus();},50);
 }
 
-function openEdit(id) {
+function openEdit(id){
   var ev=evs.find(function(e){return e.id===id;});if(!ev)return;
   editId=id;selCamp=ev.campaign;
   document.getElementById('evTitle').textContent='Edit event';
@@ -550,60 +474,38 @@ function openEdit(id) {
   document.getElementById('fE').value=ev.endDate||'';
   document.getElementById('fA').value=ev.audience||'';
   document.getElementById('fN').value=ev.notes||'';
-  document.getElementById('fLa').checked=!!ev.isLaunch;
-  document.getElementById('fMi').checked=!!ev.isMilestone;
+  document.getElementById('fLa').checked=!!ev.isLaunch;document.getElementById('fMi').checked=!!ev.isMilestone;
   document.getElementById('delBtn').style.display='block';
   buildPills(selCamp);
   document.getElementById('evOv').classList.add('open');
   setTimeout(function(){document.getElementById('fT').focus();},50);
 }
 
-function saveEv() {
+function saveEv(){
   var title=document.getElementById('fT').value.trim();if(!title)return;
-  var ev={
-    id:editId||'e'+Date.now(),
-    title:title,
-    date:document.getElementById('fD').value,
-    endDate:document.getElementById('fE').value||undefined,
-    campaign:selCamp||'internal',
-    isLaunch:document.getElementById('fLa').checked,
-    isMilestone:document.getElementById('fMi').checked,
-    audience:document.getElementById('fA').value.trim(),
-    notes:document.getElementById('fN').value.trim()
-  };
-  if(editId){var i=evs.findIndex(function(e){return e.id===editId;});if(i>-1)evs[i]=ev;}
-  else evs.push(ev);
+  var ev={id:editId||'e'+Date.now(),title:title,date:document.getElementById('fD').value,endDate:document.getElementById('fE').value||undefined,campaign:selCamp||'internal',isLaunch:document.getElementById('fLa').checked,isMilestone:document.getElementById('fMi').checked,audience:document.getElementById('fA').value.trim(),notes:document.getElementById('fN').value.trim()};
+  if(editId){var i=evs.findIndex(function(e){return e.id===editId;});if(i>-1)evs[i]=ev;}else evs.push(ev);
   save();closeEv();render();
 }
 
-function deleteEv() {
-  if(!editId||!confirm('Delete this event?'))return;
-  evs=evs.filter(function(e){return e.id!==editId;});
-  save();closeEv();render();
-}
+function deleteEv(){if(!editId||!confirm('Delete this event?'))return;evs=evs.filter(function(e){return e.id!==editId;});save();closeEv();render();}
 function closeEv(){document.getElementById('evOv').classList.remove('open');}
 
-/* ---- CAMPAIGN MODAL ---- */
-function buildColorSwatches(selected) {
+function buildColorSwatches(sel){
   var row=document.getElementById('colorRow');row.innerHTML='';
   COLORS.forEach(function(c){
-    var el=document.createElement('div');
-    el.className='cswatch'+(selected===c.n?' sel':'');
+    var el=document.createElement('div');el.className='cswatch'+(sel===c.n?' sel':'');
     el.style.background=c.dot;el.title=c.n;
-    el.onclick=function(){
-      selColor=c.n;
-      document.querySelectorAll('.cswatch').forEach(function(x){x.classList.remove('sel');});
-      el.classList.add('sel');
-    };
+    el.onclick=function(){selColor=c.n;document.querySelectorAll('.cswatch').forEach(function(x){x.classList.remove('sel');});el.classList.add('sel');};
     row.appendChild(el);
   });
 }
 
-function openCampModal() {
+function openCampModal(){
   editCampId=null;selColor='green';
   document.getElementById('campModalTitle').textContent='New campaign';
   document.getElementById('cName').value='';
-  document.getElementById('cTier').value='1';
+  document.getElementById('cTier').value='2';
   document.getElementById('cLaunch').value='';
   document.getElementById('campDelBtn').style.display='none';
   buildColorSwatches('green');
@@ -611,12 +513,12 @@ function openCampModal() {
   setTimeout(function(){document.getElementById('cName').focus();},50);
 }
 
-function openCampEdit(id) {
+function openCampEdit(id){
   var c=getCamp(id);if(!c)return;
   editCampId=id;selColor=c.color;
   document.getElementById('campModalTitle').textContent='Edit campaign';
   document.getElementById('cName').value=c.name;
-  document.getElementById('cTier').value=c.tier;
+  document.getElementById('cTier').value=String(c.tier);
   document.getElementById('cLaunch').value=c.launch||'';
   document.getElementById('campDelBtn').style.display='block';
   buildColorSwatches(c.color);
@@ -624,44 +526,26 @@ function openCampEdit(id) {
   setTimeout(function(){document.getElementById('cName').focus();},50);
 }
 
-function saveCamp() {
+function saveCamp(){
   var name=document.getElementById('cName').value.trim();if(!name)return;
   var tier=parseInt(document.getElementById('cTier').value)||0;
   var launch=document.getElementById('cLaunch').value||null;
-  if(editCampId){
-    var c=getCamp(editCampId);
-    if(c){c.name=name;c.tier=tier;c.launch=launch;c.color=selColor;}
-  } else {
-    camps.push({id:'camp_'+Date.now(),name:name,color:selColor,tier:tier,launch:launch});
-  }
+  if(editCampId){var c=getCamp(editCampId);if(c){c.name=name;c.tier=tier;c.launch=launch;c.color=selColor;}}
+  else camps.push({id:'camp_'+Date.now(),name:name,color:selColor,tier:tier,launch:launch});
   save();closeCamp();render();
 }
 
-function deleteCamp() {
-  if(!editCampId||!confirm('Delete this campaign? Events will remain.'))return;
-  camps=camps.filter(function(c){return c.id!==editCampId;});
-  save();closeCamp();render();
-}
+function deleteCamp(){if(!editCampId||!confirm('Delete this campaign? Events will remain.'))return;camps=camps.filter(function(c){return c.id!==editCampId;});save();closeCamp();render();}
 function closeCamp(){document.getElementById('campOv').classList.remove('open');}
 
-function changeMonth(dir){
-  mo+=dir;
-  if(mo>11){mo=0;yr++;}
-  if(mo<0){mo=11;yr--;}
-  render();
-}
-function setView(v){
-  view=v;
-  document.getElementById('vM').classList.toggle('on',v==='month');
-  document.getElementById('vL').classList.toggle('on',v==='list');
-  render();
-}
+function changeMonth(dir){mo+=dir;if(mo>11){mo=0;yr++;}if(mo<0){mo=11;yr--;}render();}
+function setView(v){view=v;document.getElementById('vM').classList.toggle('on',v==='month');document.getElementById('vL').classList.toggle('on',v==='list');render();}
 
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){closeEv();closeCamp();}
   if(!document.getElementById('evOv').classList.contains('open')&&!document.getElementById('campOv').classList.contains('open')){
-    if(e.key==='ArrowLeft')  changeMonth(-1);
-    if(e.key==='ArrowRight') changeMonth(1);
+    if(e.key==='ArrowLeft')changeMonth(-1);
+    if(e.key==='ArrowRight')changeMonth(1);
   }
 });
 
